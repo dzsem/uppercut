@@ -15,7 +15,7 @@ public class OpenFloor : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && collision.isTrigger == false && collision.gameObject != gameObject && collision.gameObject.GetComponent<PlayerMover>().touchesGround == false)
+        if (collision.gameObject.tag == "Player" && collision.isTrigger == false && collision.gameObject != gameObject  /*collision.gameObject.GetComponent<PlayerMover>().touchesGround == false*/)
         {
             collision.gameObject.GetComponent<PlayerMover>().col.isTrigger = true;
         
