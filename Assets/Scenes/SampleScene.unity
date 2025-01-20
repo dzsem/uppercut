@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 297438257}
   - component: {fileID: 297438256}
   m_Layer: 0
-  m_Name: Dynamic Sprite
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,7 +325,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -855298285791758126, guid: 7637aaf032646d04d81c22db972d2883, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
