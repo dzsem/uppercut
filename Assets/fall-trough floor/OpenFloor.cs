@@ -2,8 +2,6 @@
 
 public class OpenFloor : MonoBehaviour
 {
-    //public GameObject player;
-    bool isInCollision = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +18,7 @@ public class OpenFloor : MonoBehaviour
         if (collision.gameObject.tag == "Player" && collision.isTrigger == false && collision.gameObject != gameObject && collision.gameObject.GetComponent<PlayerMover>().touchesGround == false)
         {
             collision.gameObject.GetComponent<PlayerMover>().col.isTrigger = true;
-            isInCollision = true;
-            Debug.Log("x");
+        
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -29,8 +26,7 @@ public class OpenFloor : MonoBehaviour
         if (collision.gameObject.tag == "Player" && collision == collision.gameObject.GetComponent<PlayerMover>().col && collision.gameObject != gameObject && collision.enabled == true)
         {
             collision.gameObject.GetComponent<PlayerMover>().col.isTrigger = false;
-            isInCollision = false;
-            Debug.Log("y");
+          
         }
     }
 }
