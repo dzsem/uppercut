@@ -28,7 +28,7 @@ public class PlayerMover : MonoBehaviour
     void Update()
     {
         // down-ra vagy s-re átesik, ha földön van
-        if ((Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)) && ground.tag == "openFloor" && touchesGround))
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && ground.tag == "openFloor" && touchesGround)
         {
             col.isTrigger = true;
         }
