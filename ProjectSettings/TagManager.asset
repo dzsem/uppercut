@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - openFloor
+  - attackable
   layers:
   - Default
   - TransparentFX
