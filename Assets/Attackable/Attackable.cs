@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackableComponent : MonoBehaviour
@@ -15,4 +16,21 @@ public class AttackableComponent : MonoBehaviour
     {
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "attackbox")
+        {
+            Debug.Log("Trigger enter");
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "attackbox")
+        {
+            Debug.Log("Trigger exit");
+        }
+    }
+
+
 }

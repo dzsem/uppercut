@@ -10,6 +10,8 @@ public class PlayerMover : MonoBehaviour
     public float jumpForce;
     public float walksSpeed;
     public BoxCollider2D col;
+    public BoxCollider2D dashPunchBox;
+    private float _dashPunchBoxOffsetX;
 
     /// <summary>
     /// Azt tárolja, melyik vízszintes irányba néz a player. -1: balra, 1: jobbra, 0: nem def.
@@ -20,8 +22,7 @@ public class PlayerMover : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-
+        _dashPunchBoxOffsetX = dashPunchBox.offset.x;
     }
 
     // Update is called once per frame
@@ -57,9 +58,15 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     private void UpdateMovementStatus()
     {
-        _facingDirection = Math.Sign(rb.linearVelocityX);
+        // 0 kizárása
+        _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
 
         GetComponent<SpriteRenderer>().flipX = (_facingDirection == (-1));
+
+        dashPunchBox.offset = new Vector2(
+            _facingDirection * _dashPunchBoxOffsetX,
+            dashPunchBox.offset.y
+        );
     }
 
     /// <summary>
@@ -77,10 +84,23 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Megállapítja, hogy otherObject lehet-e platform. Mivel a punchboxok ugyanabban a gameobjecten belül
+    /// vannak, és nincsen felettük rigidbody, ezért összevonódnak; ekkor minden megütött objektum a 3-as (Hitbox)
+    /// layeren belül lesz. Ezeket ki kell zárni:(
+    /// </summary>
+    /// <param name="otherObject">A collision-on belüli másik gameobject.</param>
+    /// <returns></returns>
+    private bool IsGameObjectGround(GameObject otherObject)
+    {
+        return otherObject != gameObject && otherObject.layer == gameObject.layer;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != gameObject)
+        if (IsGameObjectGround(collision.gameObject))
         {
+            //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
             //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
             touchesGround = true;
             col.sharedMaterial.friction = 0.6f;
@@ -91,8 +111,10 @@ public class PlayerMover : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject != gameObject)
+        if (IsGameObjectGround(collision.gameObject))
         {
+            //Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}");
+
             touchesGround = false;
             //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
             col.sharedMaterial.friction = 0f;
