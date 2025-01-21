@@ -19,7 +19,7 @@ public class PlayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && ground.tag == "openFloor" && touchesGround)
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)) && ground.tag == "openFloor" && touchesGround))
         {
             col.isTrigger = true;
 
