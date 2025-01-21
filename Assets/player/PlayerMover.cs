@@ -8,6 +8,7 @@ public class PlayerMover : MonoBehaviour
     public bool touchesGround;
     public Rigidbody2D rb;
     public float jumpForce;
+    public float dashForce;
     public float walksSpeed;
     public BoxCollider2D col;
     public BoxCollider2D dashPunchBox;
@@ -34,23 +35,31 @@ public class PlayerMover : MonoBehaviour
             col.isTrigger = true;
         }
 
-        // space-re uppercut-ol, ha földön van
+        rb.linearVelocityX = Input.GetAxis("Horizontal") * walksSpeed;
+
+        UpdateMovementStatus();
+
+        ProcessDashInput();
+
+        UpdateAnimation();
+    }
+
+    private void ProcessDashInput()
+    {
+        if (Input.GetKeyDown(KeyCode.X) && Input.GetAxis("Horizontal") != 0f)
+        {
+            rb.AddForce(Vector2.right * dashForce * Math.Sign(Input.GetAxis("Horizontal")));
+        }
+        // space-re uppercut-ol, ha földön van és nyomod a fel inputot
         // TODO: damage
-        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
+        // TODO: dash lekódolása időre (FixedUpdate impl.)
+        else if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
         {
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
             touchesGround = false;
             GetComponent<Animator>().SetBool("isPerformingUppercut", true);
         }
-
-        rb.linearVelocityX = Input.GetAxis("Horizontal") * walksSpeed;
-
-        UpdateMovementStatus();
-
-        // TODO: dash
-
-        UpdateAnimation();
     }
 
     /// <summary>

@@ -447,6 +447,7 @@ MonoBehaviour:
   touchesGround: 0
   rb: {fileID: 297438259}
   jumpForce: 900
+  dashForce: 900
   walksSpeed: 5
   col: {fileID: 297438258}
   dashPunchBox: {fileID: 213765268}
