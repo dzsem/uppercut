@@ -429,7 +429,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1161352779}
-  - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &297438262
@@ -444,16 +443,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdbca75b6a635d4db5d4b03bfdcf1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 297438258}
+  rb: {fileID: 297438259}
+  dashPunchBox: {fileID: 213765268}
   ground: {fileID: 0}
   touchesGround: 0
-  rb: {fileID: 297438259}
   jumpForce: 1400
-  dashForce: 800
   walksSpeed: 5
   groundFriction: 0
   airFriction: 0.3
-  col: {fileID: 297438258}
-  dashPunchBox: {fileID: 213765268}
+  dashDuration: 0.2
+  dashCooldown: 0.8
+  dashForce: 800
+  _dashStatus: 0
+  _uppercutActive: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,11 +588,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0922234, y: 0.20763017, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 297438261}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &614694170
 PrefabInstance:
@@ -1254,6 +1257,7 @@ Rigidbody2D:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1719621053}
   - {fileID: 297438261}
