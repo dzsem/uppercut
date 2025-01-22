@@ -10,6 +10,8 @@ public class PlayerMover : MonoBehaviour
     public float jumpForce;
     public float dashForce;
     public float walksSpeed;
+    public float groundFriction;
+    public float airFriction;
     public BoxCollider2D col;
     public BoxCollider2D dashPunchBox;
     private float _dashPunchBoxOffsetX;
@@ -35,25 +37,37 @@ public class PlayerMover : MonoBehaviour
             col.isTrigger = true;
         }
 
-        rb.linearVelocityX = Input.GetAxis("Horizontal") * walksSpeed;
 
         UpdateMovementStatus();
 
         ProcessDashInput();
 
         UpdateAnimation();
+
+        if (Input.GetAxis("Horizontal") == 0f && touchesGround)
+        {
+            rb.linearVelocityX = 0;
+        }
     }
 
     private void ProcessDashInput()
     {
-        if (Input.GetKeyDown(KeyCode.X) && Input.GetAxis("Horizontal") != 0f)
+        if (Input.GetAxis("Horizontal") != 0f)
         {
-            rb.AddForce(Vector2.right * dashForce * Math.Sign(Input.GetAxis("Horizontal")));
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                rb.AddForce(Vector2.right * dashForce * Math.Sign(Input.GetAxis("Horizontal")));
+            }
+            else
+            {
+                rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal"));
+            }
         }
+
         // space-re uppercut-ol, ha földön van és nyomod a fel inputot
         // TODO: damage
         // TODO: dash lekódolása időre (FixedUpdate impl.)
-        else if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
+        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
         {
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
@@ -112,7 +126,7 @@ public class PlayerMover : MonoBehaviour
             //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
             //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
             touchesGround = true;
-            col.sharedMaterial.friction = 0.6f;
+            col.sharedMaterial.friction = groundFriction;
             ground = collision.gameObject;
             col.enabled = true;
         }
@@ -126,7 +140,7 @@ public class PlayerMover : MonoBehaviour
 
             touchesGround = false;
             //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
-            col.sharedMaterial.friction = 0f;
+            col.sharedMaterial.friction = airFriction;
         }
 
     }
