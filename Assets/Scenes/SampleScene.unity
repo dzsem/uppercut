@@ -678,8 +678,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 0}
-  minTime: 0
-  maxTime: 0
+  minCount: 1
+  maxCount: 4
   difficultyMultiplier: 0
   spawnPoints:
   - {x: 0, y: -3.5}

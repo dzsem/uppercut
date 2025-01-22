@@ -7,13 +7,10 @@ public class spawner : MonoBehaviour
     *   Spawner interface. The level system will call this function to spawn enemies on the set coordinates (spawnPoints).
     */
     public void Spawn() {
-        foreach (Vector2 spawnPoint in spawnPoints) {
-            Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+        for (int i = 0; i < count; ++i){
+            int spawnPointIdx = Random.Range(0, spawnPoints.Count);
+            Instantiate(enemyPrefab, spawnPoints[spawnPointIdx], Quaternion.identity);
         }
-    }
-
-    private void SetTimeUntilSpawn() {
-        timeUntilSpawn = Random.Range(minTime, maxTime);
     }
 
     // This is for debugging
@@ -32,23 +29,23 @@ public class spawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        // needs to set timeUntilSpawn if we want to spawn multiple enemies
+        count = Random.Range(minCount, maxCount);
         Spawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // needs to decrement timeUntilSpawn and call Spawn() when it reaches 0 if we want to spawn multiple enemies
+
     }    
 
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
-    private float minTime;
+    private int minCount;
     [SerializeField]
-    private float maxTime;
-    private float timeUntilSpawn;
+    private int maxCount;
+    private int count;
     [SerializeField]
     private float difficultyMultiplier; // global multiplier to boost enemy stats based on difficulty level
     [SerializeField]
