@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     /**
     *   Spawner interface. The level system will call this function to spawn enemies on the set coordinates (spawnPoints).
     */
     public void Spawn() {
-        for (int i = 0; i < count; ++i){
-            int spawnPointIdx = Random.Range(0, spawnPoints.Count);
-            Instantiate(enemyPrefab, spawnPoints[spawnPointIdx], Quaternion.identity);
+        for (int i = 0; i < _count; ++i){
+            int spawnPointIdx = Random.Range(0, _spawnPoints.Count);
+            Instantiate(_enemyPrefab, _spawnPoints[spawnPointIdx], Quaternion.identity);
         }
     }
 
@@ -17,9 +17,9 @@ public class spawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        if (spawnPoints != null)
+        if (_spawnPoints != null)
         {
-            foreach (var spawnPoint in spawnPoints)
+            foreach (var spawnPoint in _spawnPoints)
             {
                 Gizmos.DrawSphere(spawnPoint, 0.5f);
             }
@@ -29,7 +29,7 @@ public class spawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        count = Random.Range(minCount, maxCount);
+        _count = Random.Range(_minCount, _maxCount);
         Spawn();
     }
 
@@ -40,14 +40,14 @@ public class spawner : MonoBehaviour
     }    
 
     [SerializeField]
-    private GameObject enemyPrefab;
+    private GameObject _enemyPrefab;
     [SerializeField]
-    private int minCount;
+    private int _minCount;
     [SerializeField]
-    private int maxCount;
-    private int count;
+    private int _maxCount;
+    private int _count;
     [SerializeField]
-    private float difficultyMultiplier; // global multiplier to boost enemy stats based on difficulty level
+    private float _difficultyMultiplier; // global multiplier to boost enemy stats based on difficulty level
     [SerializeField]
-    private List<Vector2> spawnPoints;
+    private List<Vector2> _spawnPoints;
 }
