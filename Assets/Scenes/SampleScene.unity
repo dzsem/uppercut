@@ -358,7 +358,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &297438260
 SpriteRenderer:
@@ -446,6 +446,7 @@ MonoBehaviour:
   col: {fileID: 297438258}
   rb: {fileID: 297438259}
   dashPunchBox: {fileID: 213765268}
+  uppercutPunchBox: {fileID: 1503515284}
   ground: {fileID: 0}
   touchesGround: 0
   jumpForce: 1400
@@ -455,7 +456,13 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.8
   dashForce: 800
+  punchdownDuration: 0.2
+  punchdownCooldown: 0.1
+  punchdownForce: 500
+  _dashRefreshed: 0
   _dashStatus: 0
+  _punchdownRefreshed: 0
+  _punchdownStatus: 0
   _uppercutActive: 0
 --- !u!1 &519420028
 GameObject:

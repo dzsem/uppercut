@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
-    private enum EActionStatus { AVAILABLE, PERFORMING, COOLDOWN };
+    private enum EActionStatus { AVAILABLE, PERFORMING, COOLDOWN, READY_TO_REFRESH };
     public enum EAttackType { UPPERCUT, PUNCH, SMASH, NONE };
 
     [Header("Other Player Components")]
     public BoxCollider2D col;
     public Rigidbody2D rb;
     public BoxCollider2D dashPunchBox;
+    public BoxCollider2D uppercutPunchBox;
 
     [Header("Walking and jumping")]
     public GameObject ground;
@@ -35,14 +36,21 @@ public class PlayerMover : MonoBehaviour
     public float dashCooldown;
     public float dashForce;
 
-    [Header("Belső State")]
-    [SerializeField]
-    private EActionStatus _dashStatus = EActionStatus.AVAILABLE;
+    [Header("Punchdown")]
+    public float punchdownDuration;
+    public float punchdownCooldown;
+    public float punchdownForce;
 
-    [SerializeField]
-    private bool _uppercutActive = false;
+
+    [Header("Belső State")]
+    [SerializeField] private bool _dashRefreshed = false;
+    [SerializeField] private EActionStatus _dashStatus = EActionStatus.AVAILABLE;
+    [SerializeField] private bool _punchdownRefreshed = false;
+    [SerializeField] private EActionStatus _punchdownStatus = EActionStatus.AVAILABLE;
+    [SerializeField] private bool _uppercutActive = false;
 
     private float _dashPunchBoxOffsetX;
+    private float _uppercutPunchBoxOffsetY;
 
     /// <summary>
     /// Azt tárolja, melyik vízszintes irányba néz a player. -1: balra, 1: jobbra, 0: nem def.
@@ -55,6 +63,7 @@ public class PlayerMover : MonoBehaviour
     void Start()
     {
         _dashPunchBoxOffsetX = dashPunchBox.offset.x;
+        _uppercutPunchBoxOffsetY = uppercutPunchBox.offset.y;
     }
 
     // Update is called once per frame
@@ -79,7 +88,8 @@ public class PlayerMover : MonoBehaviour
         if (_uppercutActive)
             return EAttackType.UPPERCUT;
 
-        // TODO: smash attack
+        if (_punchdownStatus == EActionStatus.PERFORMING)
+            return EAttackType.SMASH;
 
         if (_dashStatus == EActionStatus.PERFORMING)
             return EAttackType.PUNCH;
@@ -96,34 +106,88 @@ public class PlayerMover : MonoBehaviour
         return GetAttackType() != EAttackType.NONE;
     }
 
+    public void RefreshMovementAbilities()
+    {
+        if (_dashStatus == EActionStatus.READY_TO_REFRESH)
+            _dashStatus = EActionStatus.AVAILABLE;
+        else if (_dashStatus != EActionStatus.AVAILABLE)
+            _dashRefreshed = true;
+
+        if (_punchdownStatus == EActionStatus.READY_TO_REFRESH)
+            _punchdownStatus = EActionStatus.AVAILABLE;
+        else if (_punchdownStatus != EActionStatus.AVAILABLE)
+            _punchdownRefreshed = true;
+    }
+
     /// <summary>
     /// A dash 3 fázisát (aktív - cooldown - kész) kódolja. Ez egy korutin, azaz külön fut a fő kódtól.
     /// Használat: (MonoBehaviour.)StartCoroutine(DoDash())
     /// TODO: működik web buildben?
     /// </summary>
-    /// <returns></returns>
     private IEnumerator DoDash()
     {
         _dashStatus = EActionStatus.PERFORMING;
+        GetComponent<Animator>().SetBool("isPerformingDash", true);
 
         yield return new WaitForSeconds(dashDuration);
 
+        GetComponent<Animator>().SetBool("isPerformingDash", false);
         _dashStatus = EActionStatus.COOLDOWN;
 
         yield return new WaitForSeconds(dashCooldown);
 
-        _dashStatus = EActionStatus.AVAILABLE;
+        if (!_dashRefreshed)
+            // akkor lesz újra available, ha meghívjuk a RefreshMovementAbilities()-t
+            _dashStatus = EActionStatus.READY_TO_REFRESH;
+        else
+            _dashStatus = EActionStatus.AVAILABLE;
+    }
+
+    private IEnumerator DoPunchdown()
+    {
+        _punchdownStatus = EActionStatus.PERFORMING;
+        GetComponent<Animator>().SetBool("isPerformingPunchdown", true);
+
+        yield return new WaitForSeconds(punchdownDuration);
+
+        GetComponent<Animator>().SetBool("isPerformingPunchdown", false);
+        _punchdownStatus = EActionStatus.COOLDOWN;
+
+        yield return new WaitForSeconds(punchdownCooldown);
+
+        if (!_punchdownRefreshed)
+            // akkor lesz újra available, ha meghívjuk a RefreshMovementAbilities()-t
+            _punchdownStatus = EActionStatus.READY_TO_REFRESH;
+        else
+            _punchdownStatus = EActionStatus.AVAILABLE;
     }
 
     private void ProcessInput()
     {
         bool hasHorizontalInput = Math.Abs(Input.GetAxis("Horizontal")) > 0.001f;
 
-        // FALLTHROUGH //
-        // down-ra vagy s-re átesik, ha földön van
-        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && ground.tag == "openFloor" && touchesGround)
+
+        // BUG: egyszerre két GetKeyDown() nem működik, egyre égetőbb az input manager
+        // nem működik de ugyanaz: Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)
+        // ~Tamás
+        if (Input.GetAxis("Vertical") < 0f)
         {
-            col.isTrigger = true;
+            // FALLTHROUGH //
+            // down-ra vagy s-re átesik, ha földön van
+            if (ground.tag == "openFloor" && touchesGround)
+            {
+                col.isTrigger = true;
+            }
+
+            // Punchdown //
+            // TODO: addig tartson, amég földet nem ér
+            if (Input.GetKeyDown(KeyCode.X) && !touchesGround
+                && _punchdownStatus == EActionStatus.AVAILABLE)
+            {
+                rb.linearVelocityY = 0.0f;
+                rb.AddForce(Vector2.down * punchdownForce);
+                StartCoroutine(DoPunchdown());
+            }
         }
 
         // Horizontal movement + dash //
@@ -158,6 +222,11 @@ public class PlayerMover : MonoBehaviour
         {
             rb.linearVelocityX = 0;
         }
+
+        if (touchesGround)
+        {
+            RefreshMovementAbilities();
+        }
     }
 
     /// <summary>
@@ -173,6 +242,13 @@ public class PlayerMover : MonoBehaviour
         dashPunchBox.offset = new Vector2(
             _facingDirection * _dashPunchBoxOffsetX,
             dashPunchBox.offset.y
+        );
+
+        int uppercutBoxDirection = (_punchdownStatus == EActionStatus.PERFORMING) ? (-1) : 1;
+
+        uppercutPunchBox.offset = new Vector2(
+            uppercutPunchBox.offset.x,
+            uppercutBoxDirection * _uppercutPunchBoxOffsetY
         );
     }
 
