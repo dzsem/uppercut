@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
-    private enum EActionStatus { AVAILABLE, PERFORMING, COOLDOWN, READY_TO_REFRESH };
     public enum EAttackType { UPPERCUT, PUNCH, SMASH, NONE };
 
     [Header("Other Player Components")]
@@ -17,7 +16,6 @@ public class PlayerMover : MonoBehaviour
     [Header("Walking and jumping")]
     public GameObject ground;
     public bool touchesGround;
-    public float jumpForce;
     public float walksSpeed;
 
     /// <summary>
@@ -31,23 +29,26 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     public float airFriction;
 
+    [Header("Uppercut")]
+    public float jumpForce;
+    public float uppercutVelocityThreshold;
+    public float uppercutMinimalDuration;
+
     [Header("Dash")]
     public float dashDuration;
     public float dashCooldown;
     public float dashForce;
 
     [Header("Punchdown")]
-    public float punchdownDuration;
-    public float punchdownCooldown;
     public float punchdownForce;
 
 
     [Header("Belső State")]
     [SerializeField] private bool _dashRefreshed = false;
-    [SerializeField] private EActionStatus _dashStatus = EActionStatus.AVAILABLE;
-    [SerializeField] private bool _punchdownRefreshed = false;
-    [SerializeField] private EActionStatus _punchdownStatus = EActionStatus.AVAILABLE;
-    [SerializeField] private bool _uppercutActive = false;
+    [SerializeField] private bool _uppercutRefreshed = false;
+    [SerializeReference] private AnimatedActionStatus _dashStatus = new AnimatedActionStatus("isPerformingDash");
+    [SerializeReference] private AnimatedActionStatus _punchdownStatus = new AnimatedActionStatus("isPerformingPunchdown");
+    [SerializeReference] private AnimatedActionStatus _uppercutStatus = new AnimatedActionStatus("isPerformingUppercut");
 
     private float _dashPunchBoxOffsetX;
     private float _uppercutPunchBoxOffsetY;
@@ -64,6 +65,10 @@ public class PlayerMover : MonoBehaviour
     {
         _dashPunchBoxOffsetX = dashPunchBox.offset.x;
         _uppercutPunchBoxOffsetY = uppercutPunchBox.offset.y;
+
+        _dashStatus.animator = GetComponent<Animator>();
+        _punchdownStatus.animator = GetComponent<Animator>();
+        _uppercutStatus.animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -85,13 +90,13 @@ public class PlayerMover : MonoBehaviour
     {
         // prioritások is vannak: uppercut > smash > punch
 
-        if (_uppercutActive)
+        if (_uppercutStatus.IsPerforming())
             return EAttackType.UPPERCUT;
 
-        if (_punchdownStatus == EActionStatus.PERFORMING)
+        if (_punchdownStatus.IsPerforming())
             return EAttackType.SMASH;
 
-        if (_dashStatus == EActionStatus.PERFORMING)
+        if (_dashStatus.IsPerforming())
             return EAttackType.PUNCH;
 
         return EAttackType.NONE;
@@ -106,17 +111,45 @@ public class PlayerMover : MonoBehaviour
         return GetAttackType() != EAttackType.NONE;
     }
 
+    public void RefreshUppercut()
+    {
+        if (_uppercutStatus.Status == EActionStatus.READY_TO_REFRESH)
+            _uppercutStatus.Status = EActionStatus.AVAILABLE;
+        else if (_uppercutStatus.Status != EActionStatus.AVAILABLE)
+            _uppercutRefreshed = true;
+    }
+
+    public void RefreshDash()
+    {
+        if (_dashStatus.Status == EActionStatus.READY_TO_REFRESH)
+            _dashStatus.Status = EActionStatus.AVAILABLE;
+        else if (_dashStatus.Status != EActionStatus.AVAILABLE)
+            _dashRefreshed = true;
+    }
+
     public void RefreshMovementAbilities()
     {
-        if (_dashStatus == EActionStatus.READY_TO_REFRESH)
-            _dashStatus = EActionStatus.AVAILABLE;
-        else if (_dashStatus != EActionStatus.AVAILABLE)
-            _dashRefreshed = true;
+        RefreshUppercut();
+        RefreshDash();
 
-        if (_punchdownStatus == EActionStatus.READY_TO_REFRESH)
-            _punchdownStatus = EActionStatus.AVAILABLE;
-        else if (_punchdownStatus != EActionStatus.AVAILABLE)
-            _punchdownRefreshed = true;
+        if (_punchdownStatus.IsPerforming())
+        {
+            _punchdownStatus.Status = EActionStatus.AVAILABLE;
+        }
+    }
+
+    private bool CanDash()
+    {
+        return _dashStatus.Status == EActionStatus.AVAILABLE
+            && !_uppercutStatus.IsPerforming()
+            && !_punchdownStatus.IsPerforming();
+    }
+
+    private bool CanPunchDown()
+    {
+        return _punchdownStatus.Status == EActionStatus.AVAILABLE
+            && !_uppercutStatus.IsPerforming()
+            && !_dashStatus.IsPerforming();
     }
 
     /// <summary>
@@ -126,46 +159,52 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     private IEnumerator DoDash()
     {
-        _dashStatus = EActionStatus.PERFORMING;
-        GetComponent<Animator>().SetBool("isPerformingDash", true);
+        _dashStatus.Status = EActionStatus.PERFORMING;
 
         yield return new WaitForSeconds(dashDuration);
 
-        GetComponent<Animator>().SetBool("isPerformingDash", false);
-        _dashStatus = EActionStatus.COOLDOWN;
+        _dashStatus.Status = EActionStatus.COOLDOWN;
 
         yield return new WaitForSeconds(dashCooldown);
 
         if (!_dashRefreshed)
+        {
             // akkor lesz újra available, ha meghívjuk a RefreshMovementAbilities()-t
-            _dashStatus = EActionStatus.READY_TO_REFRESH;
+            _dashStatus.Status = EActionStatus.READY_TO_REFRESH;
+        }
         else
-            _dashStatus = EActionStatus.AVAILABLE;
+        {
+            _dashStatus.Status = EActionStatus.AVAILABLE;
+            _dashRefreshed = false;
+        }
     }
 
-    private IEnumerator DoPunchdown()
+    private IEnumerator DoUppercut()
     {
-        _punchdownStatus = EActionStatus.PERFORMING;
-        GetComponent<Animator>().SetBool("isPerformingPunchdown", true);
+        touchesGround = false;
 
-        yield return new WaitForSeconds(punchdownDuration);
+        _uppercutStatus.Status = EActionStatus.PERFORMING;
 
-        GetComponent<Animator>().SetBool("isPerformingPunchdown", false);
-        _punchdownStatus = EActionStatus.COOLDOWN;
+        yield return new WaitForSeconds(uppercutMinimalDuration);
 
-        yield return new WaitForSeconds(punchdownCooldown);
+        _uppercutStatus.Status = EActionStatus.READY_TO_REFRESH;
 
-        if (!_punchdownRefreshed)
+        if (!_uppercutRefreshed)
+        {
             // akkor lesz újra available, ha meghívjuk a RefreshMovementAbilities()-t
-            _punchdownStatus = EActionStatus.READY_TO_REFRESH;
+            _uppercutStatus.Status = EActionStatus.READY_TO_REFRESH;
+        }
         else
-            _punchdownStatus = EActionStatus.AVAILABLE;
+        {
+            _uppercutStatus.Status = EActionStatus.AVAILABLE;
+            _uppercutRefreshed = false;
+        }
     }
 
+    // TODO: cognitive complexity
     private void ProcessInput()
     {
         bool hasHorizontalInput = Math.Abs(Input.GetAxis("Horizontal")) > 0.001f;
-
 
         // BUG: egyszerre két GetKeyDown() nem működik, egyre égetőbb az input manager
         // nem működik de ugyanaz: Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)
@@ -182,11 +221,12 @@ public class PlayerMover : MonoBehaviour
             // Punchdown //
             // TODO: addig tartson, amég földet nem ér
             if (Input.GetKeyDown(KeyCode.X) && !touchesGround
-                && _punchdownStatus == EActionStatus.AVAILABLE)
+                && CanPunchDown())
             {
                 rb.linearVelocityY = 0.0f;
                 rb.AddForce(Vector2.down * punchdownForce);
-                StartCoroutine(DoPunchdown());
+
+                _punchdownStatus.Status = EActionStatus.PERFORMING;
             }
         }
 
@@ -194,7 +234,7 @@ public class PlayerMover : MonoBehaviour
         if (hasHorizontalInput)
         {
             // TODO: valamilyen input manageren keresztül kezeljük a bindokat
-            if (Input.GetKeyDown(KeyCode.X) && _dashStatus == EActionStatus.AVAILABLE)
+            if (Input.GetKeyDown(KeyCode.X) && CanDash())
             {
                 rb.AddForce(Vector2.right * dashForce * Math.Sign(Input.GetAxis("Horizontal")));
                 StartCoroutine(DoDash());
@@ -211,14 +251,13 @@ public class PlayerMover : MonoBehaviour
         {
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
-            touchesGround = false;
-            _uppercutActive = true;
-            GetComponent<Animator>().SetBool("isPerformingUppercut", true);
+
+            StartCoroutine(DoUppercut());
         }
 
         // ha nincs aktív dash, és vízszintes input sincs, és földön vagyunk, megállítjuk a játékost
         // ez akadályozza meg hogy túl "csúszós" legyen a control ~Tamás
-        if (!hasHorizontalInput && touchesGround && _dashStatus != EActionStatus.PERFORMING)
+        if (!hasHorizontalInput && touchesGround && !_dashStatus.IsPerforming())
         {
             rb.linearVelocityX = 0;
         }
@@ -244,7 +283,7 @@ public class PlayerMover : MonoBehaviour
             dashPunchBox.offset.y
         );
 
-        int uppercutBoxDirection = (_punchdownStatus == EActionStatus.PERFORMING) ? (-1) : 1;
+        int uppercutBoxDirection = _punchdownStatus.IsPerforming() ? (-1) : 1;
 
         uppercutPunchBox.offset = new Vector2(
             uppercutPunchBox.offset.x,
@@ -261,10 +300,10 @@ public class PlayerMover : MonoBehaviour
         GetComponent<Animator>().SetBool("isWalking", (Mathf.Abs(rb.linearVelocityX) > 0f));
 
         // szűnjön meg az uppercut animáció, amikor elkezdünk esni, vagy földet érünk
-        if (_uppercutActive && (rb.linearVelocityY < 0f || touchesGround))
+        if (_uppercutStatus.Status != EActionStatus.PERFORMING
+            && ((-1) * rb.linearVelocityY < uppercutVelocityThreshold || touchesGround))
         {
-            _uppercutActive = false;
-            GetComponent<Animator>().SetBool("isPerformingUppercut", false);
+            RefreshUppercut();
         }
     }
 

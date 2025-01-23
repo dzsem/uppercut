@@ -7,3 +7,4 @@ A player 4 collider-ből áll:
  3. a két ütésre szolgáló box (felfelé- és jobbra) [hitbox layer]
 
 A vízszintes hitbox invertálódik inputtól függően (balra-jobbra néz); a függőleges még nem - TODO.
+~TODO frissítés ~ Tmas
