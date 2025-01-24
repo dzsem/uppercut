@@ -201,11 +201,8 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-    // TODO: cognitive complexity
-    private void ProcessInput()
+    private void ProcessVerticalInput()
     {
-        bool hasHorizontalInput = Math.Abs(Input.GetAxis("Horizontal")) > 0.001f;
-
         // BUG: egyszerre két GetKeyDown() nem működik, egyre égetőbb az input manager
         // nem működik de ugyanaz: Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)
         // ~Tamás
@@ -230,6 +227,29 @@ public class PlayerMover : MonoBehaviour
             }
         }
 
+
+        // Uppercut //
+        // space-re uppercut-ol, ha földön van és nyomod a fel inputot
+        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
+        {
+            rb.linearVelocityY = 0f;
+            rb.AddForce(Vector2.up * jumpForce);
+
+            StartCoroutine(DoUppercut());
+        }
+
+        // szűnjön meg az uppercut animáció, amikor elkezdünk esni, vagy földet érünk
+        if (_uppercutStatus.Status != EActionStatus.PERFORMING
+            && ((rb.linearVelocityY < uppercutVelocityThreshold) || touchesGround))
+        {
+            RefreshUppercut();
+        }
+    }
+
+    private void ProcessHorizontalInput()
+    {
+        bool hasHorizontalInput = Math.Abs(Input.GetAxis("Horizontal")) > 0.001f;
+
         // Horizontal movement + dash //
         if (hasHorizontalInput)
         {
@@ -245,22 +265,18 @@ public class PlayerMover : MonoBehaviour
             }
         }
 
-        // Uppercut //
-        // space-re uppercut-ol, ha földön van és nyomod a fel inputot
-        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
-        {
-            rb.linearVelocityY = 0f;
-            rb.AddForce(Vector2.up * jumpForce);
-
-            StartCoroutine(DoUppercut());
-        }
-
         // ha nincs aktív dash, és vízszintes input sincs, és földön vagyunk, megállítjuk a játékost
         // ez akadályozza meg hogy túl "csúszós" legyen a control ~Tamás
         if (!hasHorizontalInput && touchesGround && !_dashStatus.IsPerforming())
         {
             rb.linearVelocityX = 0;
         }
+    }
+
+    private void ProcessInput()
+    {
+        ProcessHorizontalInput();
+        ProcessVerticalInput();
 
         if (touchesGround)
         {
@@ -298,13 +314,6 @@ public class PlayerMover : MonoBehaviour
     {
         // isWalking igaz lesz, ha a vízszintes sebesség nem nulla
         GetComponent<Animator>().SetBool("isWalking", (Mathf.Abs(rb.linearVelocityX) > 0f));
-
-        // szűnjön meg az uppercut animáció, amikor elkezdünk esni, vagy földet érünk
-        if (_uppercutStatus.Status != EActionStatus.PERFORMING
-            && ((-1) * rb.linearVelocityY < uppercutVelocityThreshold || touchesGround))
-        {
-            RefreshUppercut();
-        }
     }
 
     /// <summary>

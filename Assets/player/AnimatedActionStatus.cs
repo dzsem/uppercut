@@ -1,6 +1,9 @@
 using UnityEngine;
 
-// TODO: doksi ~Tamas
+/// <summary>
+/// Egy wrapper osztály az EActionStatus köré. Amikor a .Status-t PERFORMING-ra állítod, akkor
+/// a megadott animátor mezőt (animatorBoolField) igaz-ra billenti, különben hamisra.
+/// </summary>
 public class AnimatedActionStatus
 {
 	public Animator animator = null;
@@ -10,24 +13,21 @@ public class AnimatedActionStatus
 
 	public EActionStatus Status
 	{
-		get
-		{
-			return _status;
-		}
+		get => _status;
 		set
 		{
-			if (value != _status)
+			if (value == _status)
+				return;
+
+			_status = value;
+
+			if (animator == null)
 			{
-				_status = value;
-
-				if (animator == null)
-				{
-					Debug.LogError($"AnimatedActionStatus (\"{animatorBoolField}\"): nem állítottad be Start()-ban az animátort!");
-					return;
-				}
-
-				animator.SetBool(animatorBoolField, _status == EActionStatus.PERFORMING);
+				Debug.LogError($"AnimatedActionStatus (\"{animatorBoolField}\"): nem állítottad be Start()-ban az animátort!");
+				return;
 			}
+
+			animator.SetBool(animatorBoolField, _status == EActionStatus.PERFORMING);
 		}
 	}
 

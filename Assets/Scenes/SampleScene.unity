@@ -449,21 +449,45 @@ MonoBehaviour:
   uppercutPunchBox: {fileID: 1503515284}
   ground: {fileID: 0}
   touchesGround: 0
-  jumpForce: 1400
   walksSpeed: 5
   groundFriction: 0
   airFriction: 0.3
+  jumpForce: 1400
+  uppercutVelocityThreshold: 50
+  uppercutMinimalDuration: 0.4
   dashDuration: 0.2
   dashCooldown: 0.8
   dashForce: 800
-  punchdownDuration: 0.2
-  punchdownCooldown: 0.1
-  punchdownForce: 500
+  punchdownForce: 800
   _dashRefreshed: 0
-  _dashStatus: 0
-  _punchdownRefreshed: 0
-  _punchdownStatus: 0
-  _uppercutActive: 0
+  _uppercutRefreshed: 0
+  _dashStatus:
+    rid: 5174589248508788736
+  _punchdownStatus:
+    rid: 5174589248508788737
+  _uppercutStatus:
+    rid: 5174589248508788738
+  references:
+    version: 2
+    RefIds:
+    - rid: 5174589248508788736
+      type: {class: AnimatedActionStatus, ns: , asm: Assembly-CSharp}
+      data:
+        animator: {fileID: 0}
+        animatorBoolField: isPerformingDash
+        _status: 0
+    - rid: 5174589248508788737
+      type: {class: AnimatedActionStatus, ns: , asm: Assembly-CSharp}
+      data:
+        animator: {fileID: 0}
+        animatorBoolField: isPerformingPunchdown
+        _status: 0
+    - rid: 5174589248508788738
+      type: {class: AnimatedActionStatus, ns: , asm: Assembly-CSharp}
+      data:
+        animator: {fileID: 0}
+        animatorBoolField: isPerformingUppercut
+        _status: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
