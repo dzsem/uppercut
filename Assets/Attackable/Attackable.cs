@@ -1,10 +1,31 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Video;
 
-public class AttackableComponent : MonoBehaviour
+public class Attackable : MonoBehaviour
 {
-    public BoxCollider2D hitboxCollider;
+    public CostumeTrigger solidRangetrigger;
+    public CostumeTrigger attackableRangetrigger;
 
+
+    public UnityEvent<int> OnHit;
+
+    void Awake()
+    {
+        attackableRangetrigger.EnterTrigger += OnAttackableRangetriggerEntered;
+        attackableRangetrigger.ExitTrigger += OnAttackableRangetriggerExited;
+    }
+
+    void OnAttackableRangetriggerEntered(Collider other)
+    {
+    }
+
+    void OnAttackableRangetriggerExited(Collider other)
+    {
+        Debug.Log("Attackable exit");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,23 +35,9 @@ public class AttackableComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "attackbox")
-        {
-            Debug.Log("Trigger enter");
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "attackbox")
-        {
-            Debug.Log("Trigger exit");
-        }
-    }
+
 
 
 }
