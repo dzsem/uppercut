@@ -12,6 +12,10 @@ public class Attackable : MonoBehaviour
 
     public UnityEvent<int> OnHit;
 
+    [Header("Player elleni knockback + damage")]
+    public float knockbackStrength;
+    public int touchDamage;
+
     void Awake()
     {
         attackableRangetrigger.EnterTrigger += OnAttackableRangetriggerEntered;
