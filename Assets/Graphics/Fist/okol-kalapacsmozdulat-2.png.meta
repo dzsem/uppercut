@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 562ec165d6fb37b418cdc2a6e2237d20
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2414445333021923901
+    second: okol-kalapacsmozdulat-2_0
+  - first:
+      213: -4753869434996049720
+    second: okol-kalapacsmozdulat-2_1
+  - first:
+      213: 1687888733384993692
+    second: okol-kalapacsmozdulat-2_2
+  - first:
+      213: 9168104507292912586
+    second: okol-kalapacsmozdulat-2_3
+  - first:
+      213: -4639012415909730616
+    second: okol-kalapacsmozdulat-2_4
+  - first:
+      213: 2306678592768644712
+    second: okol-kalapacsmozdulat-2_5
+  - first:
+      213: -4655782599221339369
+    second: okol-kalapacsmozdulat-2_6
+  - first:
+      213: -7563446270304564032
+    second: okol-kalapacsmozdulat-2_7
+  - first:
+      213: -6901376017839445399
+    second: okol-kalapacsmozdulat-2_8
+  - first:
+      213: -410436280221192733
+    second: okol-kalapacsmozdulat-2_9
+  - first:
+      213: -3714679306563253865
+    second: okol-kalapacsmozdulat-2_10
+  - first:
+      213: 7843985844054372394
+    second: okol-kalapacsmozdulat-2_11
+  - first:
+      213: -4612976216217424219
+    second: okol-kalapacsmozdulat-2_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 155
+        width: 687
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a1f54fc35d18120800000000000000
+      internalID: 2414445333021923901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_1
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 625
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8397a9fecd60eb0800000000000000
+      internalID: -4753869434996049720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_2
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 144
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9bebc53cd59c6710800000000000000
+      internalID: 1687888733384993692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_3
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 157
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb0ad48976ab3f70800000000000000
+      internalID: 9168104507292912586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_4
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 127
+        width: 20
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c6e21949caee9fb0800000000000000
+      internalID: -4639012415909730616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 157
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86619f475f7f20020800000000000000
+      internalID: 2306678592768644712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_6
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 141
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b97f5b466536fb0800000000000000
+      internalID: -4655782599221339369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_7
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 99
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc4eb4a0bd390790800000000000000
+      internalID: -7563446270304564032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_8
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 143
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96aa74ba3136930a0800000000000000
+      internalID: -6901376017839445399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_9
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 140
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3edab72b066dd4af0800000000000000
+      internalID: -410436280221192733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_10
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 127
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7998dc51adec27cc0800000000000000
+      internalID: -3714679306563253865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 140
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a20bd02e09f6bdc60800000000000000
+      internalID: 7843985844054372394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-kalapacsmozdulat-2_12
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 82
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aee80b629a6bffb0800000000000000
+      internalID: -4612976216217424219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
