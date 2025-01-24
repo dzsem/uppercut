@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
 
-public class AttackableComponent : MonoBehaviour
+public class Attackable : MonoBehaviour
 {
-    public Trigger solidRangetrigger;
-    public Trigger attackableRangetrigger;
+    public CostumeTrigger solidRangetrigger;
+    public CostumeTrigger attackableRangetrigger;
 
 
     public UnityEvent OnHit;
@@ -16,7 +16,6 @@ public class AttackableComponent : MonoBehaviour
     {
         attackableRangetrigger.EnterTrigger += OnAttackableRangetriggerEntered;
         attackableRangetrigger.ExitTrigger += OnAttackableRangetriggerExited;
-
     }
 
     void OnAttackableRangetriggerEntered(Collider other)

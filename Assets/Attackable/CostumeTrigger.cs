@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Trigger : MonoBehaviour
+public class CostumeTrigger : MonoBehaviour
 {
     public event System.Action<Collider> EnterTrigger;
     public event System.Action<Collider> ExitTrigger;

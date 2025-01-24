@@ -64,7 +64,7 @@ public class PlayerMover : MonoBehaviour
             }
         }
 
-        // space-re uppercut-ol, ha földön van és nyomod a fel inputot
+        // space-re uppercut-ol, h a földön van és nyomod a fel inputot
         // TODO: damage
         // TODO: dash lekódolása időre (FixedUpdate impl.)
         if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
