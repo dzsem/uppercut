@@ -50,14 +50,15 @@ public class PlayerMover : MonoBehaviour
     [SerializeReference] private AnimatedActionStatus _punchdownStatus = new AnimatedActionStatus("isPerformingPunchdown");
     [SerializeReference] private AnimatedActionStatus _uppercutStatus = new AnimatedActionStatus("isPerformingUppercut");
 
-    private float _dashPunchBoxOffsetX;
-    private float _uppercutPunchBoxOffsetY;
-
     /// <summary>
     /// Azt tárolja, melyik vízszintes irányba néz a player. -1: balra, 1: jobbra, 0: nem def.
     /// Ez alapján lesz meghatározva a dash iránya.
     /// </summary>
-    private int _facingDirection = 1;
+    [SerializeField][Range(-1, 1)] private int _facingDirection = 1;
+
+    private float _dashPunchBoxOffsetX;
+    private float _uppercutPunchBoxOffsetY;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -253,16 +254,17 @@ public class PlayerMover : MonoBehaviour
         // Horizontal movement + dash //
         if (hasHorizontalInput)
         {
-            // TODO: valamilyen input manageren keresztül kezeljük a bindokat
-            if (Input.GetKeyDown(KeyCode.X) && CanDash())
-            {
-                rb.AddForce(Vector2.right * dashForce * Math.Sign(Input.GetAxis("Horizontal")));
-                StartCoroutine(DoDash());
-            }
-            else
-            {
-                rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal"));
-            }
+            rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal"));
+
+            // 0 kizárása
+            _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
+        }
+
+        // TODO: valamilyen input manageren keresztül kezeljük a bindokat
+        if (Input.GetKeyDown(KeyCode.X) && CanDash())
+        {
+            rb.AddForce(Vector2.right * dashForce * _facingDirection);
+            StartCoroutine(DoDash());
         }
 
         // ha nincs aktív dash, és vízszintes input sincs, és földön vagyunk, megállítjuk a játékost
@@ -275,8 +277,11 @@ public class PlayerMover : MonoBehaviour
 
     private void ProcessInput()
     {
-        ProcessHorizontalInput();
+        // WARN: sorrend fontos, nem lehet punchdown attackot csinálni ha a horizontal
+        //       processing a vertical előtt van (dash előbb elindul mint ahogy punchdown-olni tudnánk)
+
         ProcessVerticalInput();
+        ProcessHorizontalInput();
 
         if (touchesGround)
         {
@@ -289,9 +294,6 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     private void UpdateMovementStatus()
     {
-        // 0 kizárása
-        _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
-
         GetComponent<SpriteRenderer>().flipX = (_facingDirection == (-1));
 
         dashPunchBox.offset = new Vector2(
