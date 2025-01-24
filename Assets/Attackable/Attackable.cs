@@ -10,7 +10,7 @@ public class Attackable : MonoBehaviour
     public CostumeTrigger attackableRangetrigger;
 
 
-    public UnityEvent OnHit;
+    public UnityEvent<int> OnHit;
 
     void Awake()
     {
@@ -20,7 +20,6 @@ public class Attackable : MonoBehaviour
 
     void OnAttackableRangetriggerEntered(Collider other)
     {
-        OnHit.Invoke();
     }
 
     void OnAttackableRangetriggerExited(Collider other)

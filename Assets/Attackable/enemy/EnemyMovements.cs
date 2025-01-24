@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
-using Vector2 = System.Numerics.Vector2;
 
 public class EnemyMovements : MonoBehaviour
 {
@@ -12,10 +10,10 @@ public class EnemyMovements : MonoBehaviour
     private GameObject pointStarting;
     private GameObject pointEnding;
 
-    private Rigidbody2D rb;
+    [SerializeField]private Rigidbody2D rb;
 
     private bool playerInRange=false;
-    private UnityEngine.Vector2 direction;
+    [SerializeField]private Vector2 direction;
     public float movementSpeed = 10f;
 
     //public event Action OnDeath;
@@ -32,37 +30,22 @@ public class EnemyMovements : MonoBehaviour
         endingPointTrigger.EnterTrigger +=  EnteredIntoStart;
         pointStarting=startingPointTrigger.gameObject;
         pointEnding=endingPointTrigger.gameObject;
-        rb=GetComponent<Rigidbody2D>();
+        direction = pointEnding.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!playerInRange)
         {
-            rb.MovePosition(rb.position + direction * (movementSpeed * Time.deltaTime));
+            Vector2.MoveTowards(this.transform.position.normalized, pointEnding.transform.position.normalized, movementSpeed * Time.deltaTime);
         }
     }
 
-    void EnteredIntoStart(Collider collider)
-    {
-        onTurningToEnd?.Invoke();
-    }
+    void EnteredIntoStart(Collider collider) => onTurningToEnd?.Invoke();
 
-    void EnteredIntoEnd(Collider collider)
-    {
-        onTurningToStart?.Invoke();
-    }
+    void EnteredIntoEnd(Collider collider) => onTurningToStart?.Invoke();
 
-    void TurningHandlerToStart()
-    {
-        direction=pointStarting.transform.position - transform.position;
-    }
+    void TurningHandlerToStart() => direction = pointStarting.transform.position;
 
-    void TurningHandlerToEnd()
-    {
-        direction=pointEnding.transform.position - transform.position;
-
-    }
-
+    void TurningHandlerToEnd() => direction = pointEnding.transform.position;
 }
