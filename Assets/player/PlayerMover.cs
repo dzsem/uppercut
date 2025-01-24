@@ -33,12 +33,11 @@ public class PlayerMover : MonoBehaviour
         rb.linearVelocityX = Input.GetAxis("Horizontal") * walksSpeed;
         if (rb.linearVelocityX < 0f)
         {
-
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         if (rb.linearVelocityX > 0f)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (Mathf.Abs(rb.linearVelocityX) > 0f)
         {
