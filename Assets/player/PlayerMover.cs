@@ -13,6 +13,9 @@ public class PlayerMover : MonoBehaviour
     public BoxCollider2D dashPunchBox;
     public BoxCollider2D uppercutPunchBox;
 
+    [Header("Misc beállítások")]
+    public bool disableInput = false;
+
     [Header("Walking and jumping")]
     public GameObject ground;
     public bool touchesGround;
@@ -31,7 +34,17 @@ public class PlayerMover : MonoBehaviour
 
     [Header("Uppercut")]
     public float jumpForce;
+
+    /// <summary>
+    /// Az a függőleges sebesség, ami alatt az uppercut-nak vége lesz
+    /// (amikor már ennél a sebességnél lassabban halad *felfelé*)
+    /// </summary>
     public float uppercutVelocityThreshold;
+
+    /// <summary>
+    /// Az az időtartam másodpercben, ameddig az uppercut legalább tart.
+    /// (velocityThreshold érzékelését segíti, mert van gyorsulási fázis is)
+    /// </summary>
     public float uppercutMinimalDuration;
 
     [Header("Dash")]
@@ -56,9 +69,10 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     [SerializeField][Range(-1, 1)] private int _facingDirection = 1;
 
+
+    // CACHELT VÁLTOZÓK //
     private float _dashPunchBoxOffsetX;
     private float _uppercutPunchBoxOffsetY;
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,7 +89,10 @@ public class PlayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        if (!disableInput)
+        {
+            ProcessInput();
+        }
 
         UpdateMovementStatus();
 
@@ -316,6 +333,8 @@ public class PlayerMover : MonoBehaviour
     {
         // isWalking igaz lesz, ha a vízszintes sebesség nem nulla
         GetComponent<Animator>().SetBool("isWalking", (Mathf.Abs(rb.linearVelocityX) > 0f));
+
+        // NOTE: a többi frissítést az AnimatedActionStatus-ok végzik automatikusan
     }
 
     /// <summary>
@@ -353,6 +372,5 @@ public class PlayerMover : MonoBehaviour
             //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
             col.sharedMaterial.friction = airFriction;
         }
-
     }
 }
