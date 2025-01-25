@@ -96,6 +96,8 @@ public class PlayerMover : MonoBehaviour
 
         UpdateMovementStatus();
 
+        UpdateColliders();
+
         UpdateAnimation();
     }
 
@@ -304,6 +306,13 @@ public class PlayerMover : MonoBehaviour
         {
             RefreshMovementAbilities();
         }
+    }
+
+    private void UpdateColliders()
+    {
+        // NOTE: ezt nekem kell cachelni? van olyan okos az engine hogy rájön ha nincs változás?
+        dashPunchBox.gameObject.SetActive(_dashStatus.IsPerforming());
+        uppercutPunchBox.gameObject.SetActive(_uppercutStatus.IsPerforming() || _punchdownStatus.IsPerforming());
     }
 
     /// <summary>

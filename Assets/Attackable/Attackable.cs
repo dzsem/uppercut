@@ -7,10 +7,10 @@ using UnityEngine.Video;
 public class Attackable : MonoBehaviour
 {
     public CostumeTrigger solidRangetrigger;
-    public CostumeTrigger attackableRangetrigger;
+    public Collider2DTrigger attackableRangetrigger;
 
 
-    public UnityEvent<int> OnHit;
+    public UnityEvent<int> onHit;
 
     [Header("Player elleni knockback + damage")]
     public float knockbackStrength;
@@ -18,18 +18,41 @@ public class Attackable : MonoBehaviour
 
     void Awake()
     {
-        attackableRangetrigger.EnterTrigger += OnAttackableRangetriggerEntered;
-        attackableRangetrigger.ExitTrigger += OnAttackableRangetriggerExited;
+        attackableRangetrigger.enterTrigger += OnAttackableRangeTriggerEntered;
+        attackableRangetrigger.exitTrigger += OnAttackableRangeTriggerExited;
     }
 
-    void OnAttackableRangetriggerEntered(Collider other)
+    private bool IsGameObjectHarmful(GameObject otherGameObject)
     {
+        return gameObject != otherGameObject
+            && otherGameObject.tag == "attackbox";
+        // && otherGameObject.layer == 3
+        // a trigger szerkezetéből adódóan lehetetlen, hogy ne HitboxLayerről kerüljön ki a collision
     }
 
-    void OnAttackableRangetriggerExited(Collider other)
+    void OnAttackableRangeTriggerEntered(Collider2D other)
     {
-        Debug.Log("Attackable exit");
+        if (IsGameObjectHarmful(other.gameObject))
+        {
+            Attacker attacker = other.gameObject.GetComponent<Attacker>()
+                ?? other.gameObject.GetComponentInParent<Attacker>();
+
+            int attackDamage = attacker?.attackDamage ?? 0;
+
+            // TODO: log törlése
+            Debug.Log($"Attackable \"{gameObject.name}\" hit by: \"{other.gameObject.name}\" for {attackDamage} dmg.");
+            onHit?.Invoke(attackDamage);
+        }
     }
+
+    void OnAttackableRangeTriggerExited(Collider2D other)
+    {
+        if (IsGameObjectHarmful(other.gameObject))
+        {
+            // nothing
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,8 +63,4 @@ public class Attackable : MonoBehaviour
     void Update()
     {
     }
-
-
-
-
 }

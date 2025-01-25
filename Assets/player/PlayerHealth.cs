@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("GameState eventek")]
     public UnityEvent deathEvent;
 
+    public UnityEvent<int> damageEvent;
+
     [Header("Belső state")]
     [SerializeField] private bool _isInvulnerableByDmg = false;
     [SerializeField] private int _invulnerabilityCountByDmg = 0;
@@ -33,7 +35,6 @@ public class PlayerHealth : MonoBehaviour
     public bool IsInvulnerable
     {
         get => _isInvulnerableByDmg || forceInvulnerability;
-        set { }
     }
 
     public int Health
@@ -41,7 +42,14 @@ public class PlayerHealth : MonoBehaviour
         get => _health;
         set
         {
+            bool healthDecreased = value < _health;
             _health = value;
+
+            if (healthDecreased)
+            {
+                damageEvent?.Invoke(_health);
+            }
+
             if (_health <= 0)
             {
                 deathEvent?.Invoke();
@@ -87,44 +95,33 @@ public class PlayerHealth : MonoBehaviour
             _isInvulnerableByDmg = false;
     }
 
-    private bool IsGameObjectEnemy(GameObject otherGameObject)
+    private bool IsGameObjectHarmful(GameObject otherGameObject)
     {
         return otherGameObject != gameObject
-            && otherGameObject.tag == "attackable"
+            && otherGameObject.tag == "attackbox"
             && otherGameObject.layer == hitboxLayerID;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsGameObjectEnemy(collision.gameObject))
+        if (IsGameObjectHarmful(collision.gameObject) && !playerMover.IsAttacking())
         {
-            if (!playerMover.IsAttacking())
+            Attackable attackable = collision.gameObject.GetComponent<Attackable>()
+                ?? collision.gameObject.GetComponentInParent<Attackable>();
+
+            if (!attackable)
             {
-                Attackable attackable = collision.gameObject.GetComponentInParent<Attackable>()
-                    ?? collision.gameObject.GetComponent<Attackable>();
-
-                if (!attackable)
-                {
-                    Debug.LogWarning($"Player collision \"{collision.gameObject.name}\" objektummal; amin nincs (és a szülőjén sincs) Attackable komponens.");
-                }
-
-                Vector2 dir = (gameObject.transform.position - collision.gameObject.transform.position).normalized;
-                if (!IsInvulnerable)
-                {
-                    Health -= attackable?.touchDamage ?? 0;
-                    KnockbackInDirection(dir, attackable?.knockbackStrength ?? 0.0f);
-                }
-
-                StartCoroutine(DoInvulnerability());
+                Debug.LogWarning($"Player collision \"{collision.gameObject.name}\" objektummal; amin nincs (és a szülőjén sincs) Attackable komponens.");
             }
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (IsGameObjectEnemy(collision.gameObject))
-        {
-            // nothing
+            Vector2 dir = (gameObject.transform.position - collision.gameObject.transform.position).normalized;
+            if (!IsInvulnerable)
+            {
+                Health -= attackable?.touchDamage ?? 0;
+                KnockbackInDirection(dir, attackable?.knockbackStrength ?? 0.0f);
+            }
+
+            StartCoroutine(DoInvulnerability());
         }
     }
 }
