@@ -152,7 +152,7 @@ public class PlayerMover : MonoBehaviour
         RefreshUppercut();
         RefreshDash();
 
-        if (_punchdownStatus.IsPerforming())
+        if (_punchdownStatus.IsPerforming() && (rb.linearVelocityY > 0f || touchesGround))
         {
             _punchdownStatus.Status = EActionStatus.AVAILABLE;
         }
@@ -236,7 +236,6 @@ public class PlayerMover : MonoBehaviour
             }
 
             // Punchdown //
-            // TODO: addig tartson, amég földet nem ér
             if (Input.GetKeyDown(KeyCode.X) && !touchesGround
                 && CanPunchDown())
             {
@@ -279,7 +278,6 @@ public class PlayerMover : MonoBehaviour
             _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
         }
 
-        // TODO: valamilyen input manageren keresztül kezeljük a bindokat
         if (Input.GetKeyDown(KeyCode.X) && CanDash())
         {
             rb.AddForce(Vector2.right * dashForce * _facingDirection);
