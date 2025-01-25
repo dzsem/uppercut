@@ -1,0 +1,7 @@
+public enum EActionStatus
+{
+	AVAILABLE,
+	PERFORMING,
+	COOLDOWN,
+	READY_TO_REFRESH
+};
