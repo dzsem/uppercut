@@ -506,7 +506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1194548697
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -642,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303744237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,7 +1024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1879425152
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solidRangetrigger: {fileID: 1856049281}
   attackableRangetrigger: {fileID: 942947312}
-  OnHit:
+  onHit:
     m_PersistentCalls:
       m_Calls: []
   knockbackStrength: 4
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingPointTrigger: {fileID: 1879425155}
   endingPointTrigger: {fileID: 1194548700}
-  rb: {fileID: 0}
+  rb: {fileID: 2020154327}
   direction: {x: 0, y: 0}
   movementSpeed: 10
 --- !u!50 &2020154327

@@ -15,71 +15,91 @@ public class PlayerHealth : MonoBehaviour
     [Header("HP/Max HP")]
     [SerializeField] private int _health;
     public int maxHealth;
+
+    /// <summary>
+    /// A sebezhetetlenség időtartama, miután nekimész egy enemy-nek.
+    /// </summary>
     public float invulnerabilityDuration;
+
+    /// <summary>
+    /// Programmatikusan beállítható biztosított invuln.
+    /// </summary>
     public bool forceInvulnerability;
 
     [Header("Knockback")]
+
+    /// <summary>
+    /// Az 1-es erősségű knockback ereje. Kiszámításhoz lásd: README.md#Knockback
+    /// </summary>
     public float knockbackForce;
+
+    /// <summary>
+    /// A jelenlegi knockback resistance értéke. Lásd: README.md#Knockback
+    /// </summary>
     public float knockbackResistanceStrength;
 
-    [Header("GameState eventek")]
-    public UnityEvent deathEvent;
+    [Range(0.0f, 1.0f)]
+    /// <summary>
+    /// A legkisebb lehetséges knockback szorzó, ami a strength-knockbackResistance számításból kijöhet.
+    /// Az ebből adódó erő ||knockbackForce|| * minimalKnockbackStrength nagyságú
+    /// </summary>
+    public float minimalKnockbackStrength;
 
-    public UnityEvent<int> damageEvent;
+    [Header("GameState eventek")]
+    public UnityEvent onDeath;
+
+    public UnityEvent<int> onDamage;
 
     [Header("Belső state")]
     [SerializeField] private bool _isInvulnerableByDmg = false;
     [SerializeField] private int _invulnerabilityCountByDmg = 0;
 
-
+    /// <summary>
+    /// Megadja, hogy akármilyen okból sebezhetetlen-e a player.
+    /// </summary>
     public bool IsInvulnerable
     {
         get => _isInvulnerableByDmg || forceInvulnerability;
     }
 
+    /// <summary>
+    /// Visszaadja a játékos jelenlegi életét. Átállításkor az eventeket is elsüti, ha szükséges.
+    /// </summary>
     public int Health
     {
         get => _health;
         set
         {
-            bool healthDecreased = value < _health;
+            int healthDiff = _health - value;
+            bool healthDecreased = healthDiff > 0;
             _health = value;
 
             if (healthDecreased)
             {
-                damageEvent?.Invoke(_health);
+                onDamage?.Invoke(healthDiff);
             }
 
             if (_health <= 0)
             {
-                deathEvent?.Invoke();
+                onDeath?.Invoke();
             }
         }
     }
 
+    /// <summary>
+    /// Visszalöki a játékost a megadott irányba.
+    /// </summary>
     public void KnockbackInDirection(Vector2 dir, float strength)
     {
-        float strengthMultiplier = Math.Max(0.0f, strength - knockbackResistanceStrength);
+        float strengthMultiplier = Math.Max(minimalKnockbackStrength, strength - knockbackResistanceStrength);
 
-        if (strengthMultiplier > 0.0f)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.AddForce(dir * knockbackForce * strengthMultiplier);
-        }
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(dir * knockbackForce * strengthMultiplier);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// Elindít egy invuln számlálót, amég megy, biztosan invulnerable lesz a játékos.
+    /// </summary>
     private IEnumerator DoInvulnerability()
     {
         // könyörgök legyél alapból atomi

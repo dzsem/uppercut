@@ -356,10 +356,11 @@ MonoBehaviour:
   forceInvulnerability: 0
   knockbackForce: 400
   knockbackResistanceStrength: 0
-  deathEvent:
+  minimalKnockbackStrength: 0.1
+  onDeath:
     m_PersistentCalls:
       m_Calls: []
-  damageEvent:
+  onDamage:
     m_PersistentCalls:
       m_Calls: []
   _isInvulnerableByDmg: 0

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Doma CustomTrigger implementációja, csak 2D-re (nagy merge conflict-ot elkerülendő)
+/// ~Tamás
+/// </summary>
 public class Collider2DTrigger : MonoBehaviour
 {
 	public event System.Action<Collider2D> enterTrigger;

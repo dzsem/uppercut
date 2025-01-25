@@ -13,7 +13,15 @@ public class Attackable : MonoBehaviour
     public UnityEvent<int> onHit;
 
     [Header("Player elleni knockback + damage")]
+    /// <summary>
+    /// Leírja a knockback erősségét abban az esetben, ha a player érint egy attackbox-ot
+    /// Lásd: Player/README.md#Knockback
+    /// </summary>
     public float knockbackStrength;
+
+    /// <summary>
+    /// A sebzés mértéke, amit a player kap, ha nekisétál egy attackbox-nak
+    /// </summary>
     public int touchDamage;
 
     void Awake()
