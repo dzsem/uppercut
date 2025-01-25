@@ -63,7 +63,7 @@ public class EnemyMovements : MonoBehaviour
 
     void TurningHandler(Collider2D collider)
     {
-        if (!direction.Equals(pointEnding.transform.position))
+        if (direction.Equals(pointEnding.transform.position))
         {
             onTurningToStart?.Invoke();
         }

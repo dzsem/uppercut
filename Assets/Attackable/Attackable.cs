@@ -6,8 +6,7 @@ using UnityEngine.Video;
 
 public class Attackable : MonoBehaviour
 {
-    public CostumeTrigger solidRangetrigger;
-    public Collider2DTrigger attackableRangetrigger;
+    public CostumeTrigger attackableRangetrigger;
 
 
     public UnityEvent<int> onHit;
@@ -26,8 +25,8 @@ public class Attackable : MonoBehaviour
 
     void Awake()
     {
-        attackableRangetrigger.enterTrigger += OnAttackableRangeTriggerEntered;
-        attackableRangetrigger.exitTrigger += OnAttackableRangeTriggerExited;
+        attackableRangetrigger.EnterTrigger += OnAttackableRangeTriggerEntered;
+        attackableRangetrigger.ExitTrigger += OnAttackableRangeTriggerExited;
     }
 
     private bool IsGameObjectHarmful(GameObject otherGameObject)
