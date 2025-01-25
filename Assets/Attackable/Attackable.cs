@@ -18,11 +18,11 @@ public class Attackable : MonoBehaviour
         attackableRangetrigger.ExitTrigger += OnAttackableRangetriggerExited;
     }
 
-    void OnAttackableRangetriggerEntered(Collider other)
+    void OnAttackableRangetriggerEntered(Collider2D other)
     {
     }
 
-    void OnAttackableRangetriggerExited(Collider other)
+    void OnAttackableRangetriggerExited(Collider2D other)
     {
         Debug.Log("Attackable exit");
     }

@@ -15,7 +15,7 @@ public class EnemyTargetSystem : MonoBehaviour
         viewArea.ExitTrigger += OnPlayerOutOfViewArea;
     }
 
-    void OnPlayerInViewArea(Collider collider)
+    void OnPlayerInViewArea(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
@@ -23,7 +23,7 @@ public class EnemyTargetSystem : MonoBehaviour
         }
     }
 
-    void OnPlayerOutOfViewArea(Collider collider)
+    void OnPlayerOutOfViewArea(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {

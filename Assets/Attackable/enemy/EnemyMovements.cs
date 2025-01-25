@@ -1,14 +1,15 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovements : MonoBehaviour
 {
 
-    public CostumeTrigger startingPointTrigger;
-    public CostumeTrigger endingPointTrigger;
 
-    private GameObject pointStarting;
-    private GameObject pointEnding;
+    public CostumeTrigger hitboxTrigger;
+
+    public GameObject pointStarting;
+    public GameObject pointEnding;
 
     [SerializeField]private Rigidbody2D rb;
 
@@ -26,10 +27,17 @@ public class EnemyMovements : MonoBehaviour
     {
         onTurningToStart += TurningHandlerToStart;
         onTurningToEnd += TurningHandlerToEnd;
-        startingPointTrigger.EnterTrigger += EnteredIntoEnd;
-        endingPointTrigger.EnterTrigger +=  EnteredIntoStart;
-        pointStarting=startingPointTrigger.gameObject;
-        pointEnding=endingPointTrigger.gameObject;
+
+
+        //startingPointTrigger.EnterTrigger += EnteredIntoEnd;
+        //endingPointTrigger.EnterTrigger +=  EnteredIntoStart;
+        hitboxTrigger.EnterTrigger += TurningHandler;
+
+
+        pointStarting.transform.position.Set(pointStarting.transform.position.x, this.transform.position.y, pointStarting.transform.position.z);
+        pointEnding.transform.position.Set(pointEnding.transform.position.x, this.transform.position.y, pointEnding.transform.position.z);
+
+
         direction = pointEnding.transform.position;
     }
 
@@ -37,13 +45,33 @@ public class EnemyMovements : MonoBehaviour
     {
         if (!playerInRange)
         {
-            Vector2.MoveTowards(this.transform.position.normalized, pointEnding.transform.position.normalized, movementSpeed * Time.deltaTime);
+            // Convert transform.position to Vector2 for MoveTowards
+            Vector2 currentPosition = transform.position;
+            Vector2 targetPosition = direction;
+
+            // Move towards the direction
+            Vector2 newPosition = Vector2.MoveTowards(currentPosition, targetPosition, movementSpeed * Time.deltaTime);
+
+            // Convert back to Vector3 and update transform.position
+            transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+
         }
     }
 
-    void EnteredIntoStart(Collider collider) => onTurningToEnd?.Invoke();
 
-    void EnteredIntoEnd(Collider collider) => onTurningToStart?.Invoke();
+
+
+    void TurningHandler(Collider2D collider)
+    {
+        if (!direction.Equals(pointEnding.transform.position))
+        {
+            onTurningToStart?.Invoke();
+        }
+        else
+        {
+            onTurningToEnd?.Invoke();
+        }
+    }
 
     void TurningHandlerToStart() => direction = pointStarting.transform.position;
 
