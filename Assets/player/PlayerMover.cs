@@ -353,7 +353,7 @@ public class PlayerMover : MonoBehaviour
     /// <returns></returns>
     private bool IsGameObjectGround(GameObject otherObject)
     {
-        return otherObject != gameObject && otherObject.layer == gameObject.layer;
+        return otherObject != gameObject && otherObject.layer == gameObject.layer && otherObject.tag != "enemy";
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

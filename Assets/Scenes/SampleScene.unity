@@ -846,6 +846,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.00921458
       objectReference: {fileID: 0}
+    - target: {fileID: 1390357381850640493, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1661605835058491320, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
       propertyPath: pointEnding
       value: 
@@ -857,6 +861,10 @@ PrefabInstance:
     - target: {fileID: 1726009579716606954, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
       propertyPath: m_TagString
       value: attackable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328077193148829203, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5880107426301177298, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
       propertyPath: m_Name
@@ -901,6 +909,14 @@ PrefabInstance:
     - target: {fileID: 6481583275348285806, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964792982712780146, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
+      propertyPath: touchDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964792982712780146, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}
+      propertyPath: knockbackStrength
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

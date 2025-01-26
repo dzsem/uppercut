@@ -126,6 +126,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (IsGameObjectHarmful(collision.gameObject) && !playerMover.IsAttacking())
         {
+            Debug.Log($"Collision {collision.gameObject.name}");
             Attackable attackable = collision.gameObject.GetComponent<Attackable>()
                 ?? collision.gameObject.GetComponentInParent<Attackable>();
 
