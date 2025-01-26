@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700b416227be78f5fb6497899791e20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 297438262}
+  player: {fileID: 1238941177}
   cameraSpeed: 3
   cameraOffsetDistance: 1
   cameraOffsetSpeed: 2
@@ -567,6 +567,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05a3e763906a423dbf5bfce64759a82, type: 3}
+--- !u!114 &1238941177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5656839993596156559, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+  m_PrefabInstance: {fileID: 1873090731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfdbca75b6a635d4db5d4b03bfdcf1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1350911512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6481583275348285806, guid: 1759c3425d3ac4d9d8ea83ab8d7d30f9, type: 3}

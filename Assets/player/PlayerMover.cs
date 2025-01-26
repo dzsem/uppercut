@@ -318,7 +318,17 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     private void UpdateMovementStatus()
     {
-        GetComponent<SpriteRenderer>().flipX = (_facingDirection == (-1));
+        // GetComponent<SpriteRenderer>().flipX = (_facingDirection == (-1)) helyett:
+        // (nem tudom miért kell, Ákos fix) ~Tamás
+        if (_facingDirection == (-1))
+        {
+            GetComponent<SpriteRenderer>().transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
 
         dashPunchBox.offset = new Vector2(
             _facingDirection * _dashPunchBoxOffsetX,
