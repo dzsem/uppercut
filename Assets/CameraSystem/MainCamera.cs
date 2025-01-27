@@ -12,24 +12,31 @@ public class MainCamera : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate()
-    {   
+    {
         // Ezekkel kicsit eltolom abba az irányba a kamerát, amerre a karakter néz, hogy több látszódjon a pályából abba az irányba.
-        if (player.rb.linearVelocityX > 0) { // facing right
+        if (player.rb.linearVelocityX > 0)
+        { // facing right
             _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
-        } else if (player.rb.linearVelocityX < 0) { // facing left
+        }
+        else if (player.rb.linearVelocityX < 0)
+        { // facing left
             _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, -cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
         }
 
         // Esésnél kicsit lentebb néz a kamera, hogy a játékos jobban lássa, hogy hova fog érkezni
         // Ez még nem működik olyan jól szerintem
-        if (player.rb.linearVelocityY < 0) { // falling
+        if (player.rb.linearVelocityY < 0)
+        { // falling
             _cameraOffsetY = Mathf.Lerp(_cameraOffsetY, -2 * cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
-        } else {
+        }
+        else
+        {
             _cameraOffsetY = 0;
         }
 
         // A kamera ugrásnál csak akkor vált pozíciót, ha a játékos már leérkezett, így könnyebb ugrani szerintem
-        if (player.touchesGround || player.rb.linearVelocityY < 0) { // platform lock
+        if (player.TouchesGround || player.rb.linearVelocityY < 0)
+        { // platform lock
             _targetPoint.y = player.transform.position.y + _cameraOffsetY;
         }
 
