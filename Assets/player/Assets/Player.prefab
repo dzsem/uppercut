@@ -300,7 +300,7 @@ MonoBehaviour:
   airFriction: 0
   jumpForce: 1400
   uppercutVelocityThreshold: 50
-  uppercutMinimalDuration: 0.1
+  uppercutMinimalDuration: 0.3
   dashDuration: 0.2
   dashCooldown: 0.8
   dashForce: 800
