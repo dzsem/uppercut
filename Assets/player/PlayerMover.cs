@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,9 +22,29 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField] private int _groundCollidersTouched = 0;
 
+    private int GroundCollidersTouched
+    {
+        get => _groundCollidersTouched;
+        set
+        {
+            bool newTouchesGround = value > 0;
+
+            if (newTouchesGround != TouchesGround)
+            {
+                _touchesGround = newTouchesGround;
+                // amikor animálva lesz: (lásd grafika patch)
+                // GetComponent<Animator>().SetBool("groundTouch", TouchesGround)
+            }
+
+            _groundCollidersTouched = value;
+        }
+    }
+
+    [SerializeField] private bool _touchesGround = false;
+
     public bool TouchesGround
     {
-        get => _groundCollidersTouched > 0;
+        get => _touchesGround;
     }
 
     public float walksSpeed;
@@ -377,7 +398,7 @@ public class PlayerMover : MonoBehaviour
         {
             //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
             //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
-            _groundCollidersTouched += 1;
+            GroundCollidersTouched += 1;
             col.sharedMaterial.friction = groundFriction;
             ground = collision.gameObject;
             col.enabled = true;
@@ -390,7 +411,7 @@ public class PlayerMover : MonoBehaviour
         {
             //Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}");
 
-            _groundCollidersTouched -= 1;
+            GroundCollidersTouched -= 1;
             //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
             col.sharedMaterial.friction = airFriction;
         }
