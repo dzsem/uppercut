@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-nagyi-1_0: -9087325532516394580
+      enemy-nagyi-1_1: -8542007354830060884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

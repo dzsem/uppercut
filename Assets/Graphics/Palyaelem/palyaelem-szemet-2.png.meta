@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      palyaelem-szemet-2_0: 6081951664740978154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

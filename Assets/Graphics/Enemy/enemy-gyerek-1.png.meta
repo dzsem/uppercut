@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-gyerek-1_0: 6468602583906655736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

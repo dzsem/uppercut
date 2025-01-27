@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-torottuveg_0: -5352661828974594796
+      okol-torottuveg_1: -4732154146055914758
+      okol-torottuveg_10: -6147248263602510156
+      okol-torottuveg_11: -1017297759540532122
+      okol-torottuveg_2: -1329016942548850587
+      okol-torottuveg_3: 8505284437239132494
+      okol-torottuveg_4: -8116127851227331068
+      okol-torottuveg_5: 1973418799483939522
+      okol-torottuveg_6: -3696945160651846116
+      okol-torottuveg_7: -2656608779958077805
+      okol-torottuveg_8: -7285592141163289048
+      okol-torottuveg_9: 6493404918689710639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -322,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-fingergun-1_0: 5563990586933810247
+      okol-fingergun-1_1: 5338711361855008327
+      okol-fingergun-1_2: -5713146552768954511
+      okol-fingergun-1_3: -4628310007342915412
+      okol-fingergun-1_4: -4858517298757005507
+      okol-fingergun-1_5: -6666753353854458655
+      okol-fingergun-1_6: -6919340839193990544
+      okol-fingergun-1_7: 3226019513194134169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

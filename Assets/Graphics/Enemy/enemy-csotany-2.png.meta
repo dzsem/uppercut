@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-csotany-2_0: -6777935266430246550
+      enemy-csotany-2_1: -3353891762485700225
+      enemy-csotany-2_2: 4359033145720207269
+      enemy-csotany-2_3: 4279842237105838179
+      enemy-csotany-2_4: 3704993902200395204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      palyaelem-fotel_0: 6725149919944387442
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

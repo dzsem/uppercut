@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-dagi-2_0: 6133116884828794809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

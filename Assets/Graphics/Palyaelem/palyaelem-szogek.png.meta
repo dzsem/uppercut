@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      palyaelem-szogek_0: -1070490121449433945
+      palyaelem-szogek_1: -4293007979147280860
+      palyaelem-szogek_2: 352742054088720119
+      palyaelem-szogek_3: -9156366134206080271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

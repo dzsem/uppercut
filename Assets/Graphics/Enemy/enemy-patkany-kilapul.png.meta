@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-patkany-kilapul_0: 4551330178494287537
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

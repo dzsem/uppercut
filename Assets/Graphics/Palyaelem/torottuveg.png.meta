@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      torottuveg_0: -158811488682065710
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
