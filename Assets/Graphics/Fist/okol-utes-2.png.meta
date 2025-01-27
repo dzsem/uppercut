@@ -434,7 +434,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-utes-2_0: 2778981802292580250
+      okol-utes-2_1: -1970098998387534297
+      okol-utes-2_10: -7260968981549819731
+      okol-utes-2_11: -6768751927141273232
+      okol-utes-2_12: -6882367094091086563
+      okol-utes-2_2: -5985770864143504121
+      okol-utes-2_3: 1841416525541706660
+      okol-utes-2_4: 13294316827605871
+      okol-utes-2_5: 4082947949989144926
+      okol-utes-2_6: -4521317609799368073
+      okol-utes-2_7: 1679623321196133280
+      okol-utes-2_8: -7024637018615572664
+      okol-utes-2_9: -7706852843200112206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

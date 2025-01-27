@@ -8,34 +8,47 @@ public class fignerMover : MonoBehaviour
     public GameObject body;
     public Vector3 elevationOffset;
     public float speed = 5;
+    private float _directionalOffset;
+    public float forwardOffset = -2;
+    public float backOffset = 1;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.position.x - (body.transform.position.x + elevationOffset.x)) >= maxDistance)
+        
+        if (Mathf.Sign(body.GetComponent<Rigidbody2D>().linearVelocityX) >= 0)
+        {
+            _directionalOffset = forwardOffset;
+        }
+        else
+        {
+            _directionalOffset = backOffset;
+        }
+        if (Mathf.Abs(transform.position.x - (body.transform.position.x + elevationOffset.x + _directionalOffset)) >= maxDistance)
         {
             shouldMove = true;
         }
-        if (Vector3.Distance(transform.position, body.transform.position + elevationOffset) < 0.5)
+        if (Vector3.Distance(transform.position, body.transform.position + elevationOffset + new Vector3(_directionalOffset, 0, 0)) < 0.5)
         {
             shouldMove = false;
         }
         if (shouldMove)
         {
-            transform.position = Vector2.MoveTowards(transform.position, body.transform.position + elevationOffset, speed *Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, body.transform.position + elevationOffset + new Vector3(_directionalOffset, 0, 0), speed *Time.deltaTime);
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+            RaycastHit2D hit;
             hit = Physics2D.Raycast(transform.position, Vector2.down);
             if (hit.distance > 0.1)
             {
                 transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
+                
             }
            
         }

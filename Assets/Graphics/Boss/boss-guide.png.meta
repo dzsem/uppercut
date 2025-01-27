@@ -684,7 +684,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      boss-guide_0: -3436735594614988963
+      boss-guide_1: 1704567081111829744
+      boss-guide_10: 4904836902146485040
+      boss-guide_11: 2435375045475101689
+      boss-guide_12: 957476224456336081
+      boss-guide_13: 2489801100856916794
+      boss-guide_14: -8361930760842896113
+      boss-guide_15: -2317095216843846554
+      boss-guide_16: 450862637443423610
+      boss-guide_17: 7790797164330183783
+      boss-guide_18: 3247842435118436472
+      boss-guide_19: -2545072762285242001
+      boss-guide_2: -2781455562037360321
+      boss-guide_20: -8813228318375850679
+      boss-guide_21: 2379069571284863612
+      boss-guide_22: 4954307684251865097
+      boss-guide_3: 5761206451667234887
+      boss-guide_4: 7891629888721852994
+      boss-guide_5: -160029153373816223
+      boss-guide_6: -2648892731947045799
+      boss-guide_7: -1458052006218461394
+      boss-guide_8: -6918804023401697846
+      boss-guide_9: -8259459174166560841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

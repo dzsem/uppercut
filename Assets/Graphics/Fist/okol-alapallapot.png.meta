@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-alapallapot_0: 5794028645830066213
+      okol-alapallapot_1: -8541838470917257488
+      okol-alapallapot_2: -665190119773317572
+      okol-alapallapot_3: -3563152409256620610
+      okol-alapallapot_4: 3145674726796769966
+      okol-alapallapot_5: 2218014184364234642
+      okol-alapallapot_6: -2204367065456821116
+      okol-alapallapot_7: 7964516298356523019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hatter-panelsor-2_0: 8163606572343299702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

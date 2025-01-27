@@ -484,7 +484,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-punchdown-1_0: 1090109430922604168
+      okol-punchdown-1_1: 7043229765435458964
+      okol-punchdown-1_10: 2788959691530565479
+      okol-punchdown-1_11: -3941974290949512138
+      okol-punchdown-1_12: 4413370290300123624
+      okol-punchdown-1_13: 532227140969392188
+      okol-punchdown-1_14: -6362062238796485507
+      okol-punchdown-1_2: -586525382456467542
+      okol-punchdown-1_3: -6973279734058994419
+      okol-punchdown-1_4: -4380206203907115273
+      okol-punchdown-1_5: 2631012329104739414
+      okol-punchdown-1_6: -5544941131422755676
+      okol-punchdown-1_7: 4560235586750840579
+      okol-punchdown-1_8: 8600606876172291243
+      okol-punchdown-1_9: -846748815317941514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-kalapacsmozdulat-1_0: -1005816104416719929
+      okol-kalapacsmozdulat-1_1: -6507848810545207782
+      okol-kalapacsmozdulat-1_2: -7568803718319546568
+      okol-kalapacsmozdulat-1_3: -7523352050706700809
+      okol-kalapacsmozdulat-1_4: 44345364393240159
+      okol-kalapacsmozdulat-1_5: 3986495182114271930
+      okol-kalapacsmozdulat-1_6: -1667991517304358548
+      okol-kalapacsmozdulat-1_7: -4408606904612053954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

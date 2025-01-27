@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 7637aaf032646d04d81c22db972d2883
+guid: 3e39b9e776d6aa24f84babf2b48eab0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -855298285791758126
-    second: 1_0
+      213: -6065168671354158538
+    second: palyaelem-kanape_0
   - first:
-      213: 9180251791023625898
-    second: 1_1
+      213: -1643894602298004599
+    second: palyaelem-kanape_1
   - first:
-      213: -549789443665989942
-    second: 1_2
+      213: 6790598556422989935
+    second: palyaelem-kanape_2
   - first:
-      213: -5167413608083449488
-    second: 1_3
+      213: -5831746149525866958
+    second: palyaelem-kanape_3
   - first:
-      213: -8408763834710030297
-    second: 1_4
+      213: 2041790182113753839
+    second: palyaelem-kanape_4
   - first:
-      213: 1144234645273286238
-    second: 1_5
-  - first:
-      213: 4141612904334516676
-    second: 1_6
-  - first:
-      213: -5589664403440696418
-    second: 1_7
-  - first:
-      213: 992728304312703659
-    second: 1_8
+      213: -3557383840347365896
+    second: palyaelem-kanape_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -124,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1_0
+      name: palyaelem-kanape_0
       rect:
         serializedVersion: 2
-        x: 118
-        y: 16
-        width: 496
-        height: 687
+        x: 639
+        y: 966
+        width: 18
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +130,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d8b16a9dbe5124f0800000000000000
-      internalID: -855298285791758126
+      spriteID: 6328b116a3134dba0800000000000000
+      internalID: -6065168671354158538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_1
+      name: palyaelem-kanape_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 699
+        x: 645
+        y: 956
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b68d5a196bf29e0800000000000000
+      internalID: -1643894602298004599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: palyaelem-kanape_2
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 949
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f686fdfa86d0d3e50800000000000000
+      internalID: 6790598556422989935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: palyaelem-kanape_3
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 882
         width: 13
-        height: 7
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,129 +196,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa65b986d5ec66f70800000000000000
-      internalID: 9180251791023625898
+      spriteID: 236324166c9711fa0800000000000000
+      internalID: -5831746149525866958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_2
+      name: palyaelem-kanape_4
       rect:
         serializedVersion: 2
-        x: 119
-        y: 526
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ace6705f961ce58f0800000000000000
-      internalID: -549789443665989942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_3
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 493
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0799aaa93b8a948b0800000000000000
-      internalID: -5167413608083449488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_4
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 419
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 72805f708d11e4b80800000000000000
-      internalID: -8408763834710030297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 466
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e569533f85321ef00800000000000000
-      internalID: 1144234645273286238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 454
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c168084ef6f97930800000000000000
-      internalID: 4141612904334516676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_7
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 418
-        width: 14
+        x: 645
+        y: 867
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -293,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e93854327d58d62b0800000000000000
-      internalID: -5589664403440696418
+      spriteID: fea35ce4a55e55c10800000000000000
+      internalID: 2041790182113753839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_8
+      name: palyaelem-kanape_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 19
-        width: 6
-        height: 6
+        x: 123
+        y: 434
+        width: 1034
+        height: 412
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: baad8011221e6cd00800000000000000
-      internalID: 992728304312703659
+      spriteID: 8fd516abe32a1aec0800000000000000
+      internalID: -3557383840347365896
       vertices: []
       indices: 
       edges: []
@@ -334,16 +259,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      1_0: -855298285791758126
-      1_1: 9180251791023625898
-      1_2: -549789443665989942
-      1_3: -5167413608083449488
-      1_4: -8408763834710030297
-      1_5: 1144234645273286238
-      1_6: 4141612904334516676
-      1_7: -5589664403440696418
-      1_8: 992728304312703659
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
