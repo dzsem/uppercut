@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/PersistentStuff.unity
     guid: 2e8a70f1043f507e5b2f5eecffaea574
   - enabled: 1
-    path: Assets/Scenes/TestLevel1.unity
+    path: Assets/LevelSystem/ScenePrefabs/TestLevel1.unity
     guid: 85de403df57b0e8aca4ccc27e344105c
   - enabled: 1
-    path: Assets/Scenes/TestLevel2.unity
+    path: Assets/LevelSystem/ScenePrefabs/TestLevel2.unity
     guid: 17faac9cf1faaff0d87c6942bae50930
   - enabled: 1
-    path: Assets/Scenes/TestLevel3.unity
+    path: Assets/LevelSystem/ScenePrefabs/TestLevel3.unity
     guid: a5ee6d0a5ce3a99828f5ce5d1ea0a2c6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
