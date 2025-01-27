@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,34 @@ public class PlayerMover : MonoBehaviour
 
     [Header("Walking and jumping")]
     public GameObject ground;
-    public bool touchesGround;
+
+    [SerializeField] private int _groundCollidersTouched = 0;
+
+    private int GroundCollidersTouched
+    {
+        get => _groundCollidersTouched;
+        set
+        {
+            bool newTouchesGround = value > 0;
+
+            if (newTouchesGround != TouchesGround)
+            {
+                _touchesGround = newTouchesGround;
+                // amikor animálva lesz: (lásd grafika patch)
+                // GetComponent<Animator>().SetBool("groundTouch", TouchesGround)
+            }
+
+            _groundCollidersTouched = value;
+        }
+    }
+
+    [SerializeField] private bool _touchesGround = false;
+
+    public bool TouchesGround
+    {
+        get => _touchesGround;
+    }
+
     public float walksSpeed;
 
     /// <summary>
@@ -152,7 +180,7 @@ public class PlayerMover : MonoBehaviour
         RefreshUppercut();
         RefreshDash();
 
-        if (_punchdownStatus.IsPerforming() && (rb.linearVelocityY > 0f || touchesGround))
+        if (_punchdownStatus.IsPerforming() && (rb.linearVelocityY > 0f || TouchesGround))
         {
             _punchdownStatus.Status = EActionStatus.AVAILABLE;
         }
@@ -201,8 +229,6 @@ public class PlayerMover : MonoBehaviour
 
     private IEnumerator DoUppercut()
     {
-        touchesGround = false;
-
         _uppercutStatus.Status = EActionStatus.PERFORMING;
 
         yield return new WaitForSeconds(uppercutMinimalDuration);
@@ -230,13 +256,13 @@ public class PlayerMover : MonoBehaviour
         {
             // FALLTHROUGH //
             // down-ra vagy s-re átesik, ha földön van
-            if (ground.tag == "openFloor" && touchesGround)
+            if (ground.tag == "openFloor" && TouchesGround)
             {
                 col.isTrigger = true;
             }
 
             // Punchdown //
-            if (Input.GetKeyDown(KeyCode.X) && !touchesGround
+            if (Input.GetKeyDown(KeyCode.X) && !TouchesGround
                 && CanPunchDown())
             {
                 rb.linearVelocityY = 0.0f;
@@ -249,7 +275,7 @@ public class PlayerMover : MonoBehaviour
 
         // Uppercut //
         // space-re uppercut-ol, ha földön van és nyomod a fel inputot
-        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
+        if (Input.GetKeyDown(KeyCode.Space) && TouchesGround)
         {
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
@@ -259,7 +285,7 @@ public class PlayerMover : MonoBehaviour
 
         // szűnjön meg az uppercut animáció, amikor elkezdünk esni, vagy földet érünk
         if (_uppercutStatus.Status != EActionStatus.PERFORMING
-            && ((rb.linearVelocityY < uppercutVelocityThreshold) || touchesGround))
+            && ((rb.linearVelocityY < uppercutVelocityThreshold) || TouchesGround))
         {
             RefreshUppercut();
         }
@@ -286,7 +312,7 @@ public class PlayerMover : MonoBehaviour
 
         // ha nincs aktív dash, és vízszintes input sincs, és földön vagyunk, megállítjuk a játékost
         // ez akadályozza meg hogy túl "csúszós" legyen a control ~Tamás
-        if (!hasHorizontalInput && touchesGround && !_dashStatus.IsPerforming())
+        if (!hasHorizontalInput && TouchesGround && !_dashStatus.IsPerforming())
         {
             rb.linearVelocityX = 0;
         }
@@ -300,7 +326,7 @@ public class PlayerMover : MonoBehaviour
         ProcessVerticalInput();
         ProcessHorizontalInput();
 
-        if (touchesGround)
+        if (TouchesGround)
         {
             RefreshMovementAbilities();
         }
@@ -372,7 +398,7 @@ public class PlayerMover : MonoBehaviour
         {
             //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
             //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
-            touchesGround = true;
+            GroundCollidersTouched += 1;
             col.sharedMaterial.friction = groundFriction;
             ground = collision.gameObject;
             col.enabled = true;
@@ -385,7 +411,7 @@ public class PlayerMover : MonoBehaviour
         {
             //Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}");
 
-            touchesGround = false;
+            GroundCollidersTouched -= 1;
             //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
             col.sharedMaterial.friction = airFriction;
         }
