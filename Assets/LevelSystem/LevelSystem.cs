@@ -1,32 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using System.Threading;
-using TreeEditor;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class LevelSystem : MonoBehaviour {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        // Debug.Log("Scenes:");
-        // Debug.Log($"Start scene: {startScenePrefab}, end scene: {endScenePrefab}");
-        // foreach (GameObject prefab in scenePrefabs) {
-        //     Debug.Log(prefab);
-        // }
-
         _map = GenerateMap();
         for (int i = 0; i < _map.Count; ++i) {
             _unloadedPrefabs.Add(i); // csak az index alapján trackeljük a betöltött és be nem töltött prefabeket
         }
         LoadPrefabs();
-
-        // SceneManager.LoadSceneAsync("TestLevel2", LoadSceneMode.Additive);
-        // SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Update is called once per frame
     void Update() {
         _checkTimer += Time.deltaTime;
 
@@ -38,7 +23,7 @@ public class LevelSystem : MonoBehaviour {
     }
 
     /**
-    *   Legenerálja a mapot a meghatározott scenekből és paraméterekből, amiket az asset menuben meg lehet adni.
+    *   Legenerálja a mapot a meghatározott prefabekből és paraméterekből, amiket az asset menuben meg lehet adni.
     */
     private List<GameObject> GenerateMap() {
         List<GameObject> map = new List<GameObject>();
@@ -63,7 +48,7 @@ public class LevelSystem : MonoBehaviour {
     }
 
     /**
-    *   Karbantartja a _loadedScenes-t és betölti a megfelelő sceneket
+    *   Karbantartja a _loadedScenes-t és betölti a megfelelő prefabeket
     */
     private void LoadPrefabs() {
         if (_unloadedPrefabs.Count == 0) {
@@ -86,6 +71,9 @@ public class LevelSystem : MonoBehaviour {
         _unloadedPrefabs.RemoveAll(prefab => _loadedPrefabs.Contains(prefab)); // kiszedjuk az unloaded listából, hogy többször ne legyen betöltve semmi sem
     }
 
+    /**
+    *   Karbantartja az _unloadedScenes-t és kitölti a megfelelő prefabeket
+    */
     private void UnloadPrefabs() {
         if (_loadedPrefabs.Count == 0) {
             return;
@@ -107,13 +95,13 @@ public class LevelSystem : MonoBehaviour {
         _loadedPrefabs.RemoveAll(prefab => _unloadedPrefabs.Contains(prefab)); // kiszedjuk az unloaded listából, hogy többször ne legyen betöltve semmi sem
     }
 
-    public PlayerMover player;
-    public List<GameObject> scenePrefabs;
-    public GameObject startScenePrefab;
-    public GameObject endScenePrefab;
-    public int mapPartCount = 10;
-    public float prefabWidth = 30f;
-    public float checkInterval = 4f;
+    public PlayerMover player; // player referencia a távolság számításhoz
+    public List<GameObject> scenePrefabs; // milyen prefabekből legyen összepakolva a pálya
+    public GameObject startScenePrefab; // start room
+    public GameObject endScenePrefab; // boss room
+    public int mapPartCount = 10; // hány részből áll a map
+    public float prefabWidth = 30f; // prefabek előre meghatározott szélesek legyenek, hogy könnyen számítható legyen az elhelyezkedésük és a player távolsága
+    public float checkInterval = 1f; // intervallum a betöltések ellenőrzésére, hogy ne minden egyes updatenél legyen sok aritmetika
     private float _checkTimer = 0f;
     private List<GameObject> _map;
     private List<int> _loadedPrefabs = new List<int>();
