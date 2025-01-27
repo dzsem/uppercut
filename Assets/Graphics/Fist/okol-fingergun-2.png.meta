@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 64e10208a7a6d2240a7c860377422a80
+guid: 63bdcf72e0c6a334490130268d06e21e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3465286685962602723
-    second: 6_0
+      213: -467109438727426100
+    second: okol-fingergun-2_0
   - first:
-      213: 6653994858678897968
-    second: 6_1
+      213: -4707301767235334996
+    second: okol-fingergun-2_1
   - first:
-      213: -9091539399625358973
-    second: 6_2
+      213: 6655221716883424603
+    second: okol-fingergun-2_2
   - first:
-      213: 781045095500365311
-    second: 6_3
+      213: -6492302306994795860
+    second: okol-fingergun-2_3
   - first:
-      213: -5358480406590413813
-    second: 6_4
+      213: 2488450319616945461
+    second: okol-fingergun-2_4
+  - first:
+      213: -1630136563882512411
+    second: okol-fingergun-2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 720
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,17 +111,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 6_0
+      name: okol-fingergun-2_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 21
-        width: 508
-        height: 674
+        x: 16
+        y: 183
+        width: 704
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e801b981eb271030800000000000000
-      internalID: 3465286685962602723
+      spriteID: ccf6b69b07e7489f0800000000000000
+      internalID: -467109438727426100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6_1
+      name: okol-fingergun-2_1
       rect:
         serializedVersion: 2
-        x: 94
-        y: 518
-        width: 6
-        height: 6
+        x: 705
+        y: 449
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03dc4d0d11db75c50800000000000000
-      internalID: 6653994858678897968
+      spriteID: cac8e59abfd4caeb0800000000000000
+      internalID: -4707301767235334996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6_2
+      name: okol-fingergun-2_2
       rect:
         serializedVersion: 2
-        x: 106
-        y: 485
-        width: 6
-        height: 6
+        x: 705
+        y: 434
+        width: 10
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 381ccd7c51d54d180800000000000000
-      internalID: -9091539399625358973
+      spriteID: b554d4004e81c5c50800000000000000
+      internalID: 6655221716883424603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6_3
+      name: okol-fingergun-2_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 458
-        width: 7
-        height: 6
+        x: 206
+        y: 138
+        width: 45
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,19 +209,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffd3cde4064d6da00800000000000000
-      internalID: 781045095500365311
+      spriteID: caa40211375b6e5a0800000000000000
+      internalID: -6492302306994795860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6_4
+      name: okol-fingergun-2_4
       rect:
         serializedVersion: 2
-        x: 102
-        y: 446
-        width: 7
+        x: 217
+        y: 183
+        width: 8
         height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,8 +231,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b04a94de57ad2a5b0800000000000000
-      internalID: -5358480406590413813
+      spriteID: 53da9fd9160c88220800000000000000
+      internalID: 2488450319616945461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-fingergun-2_5
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 126
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef28669e679069e0800000000000000
+      internalID: -1630136563882512411
       vertices: []
       indices: 
       edges: []
@@ -234,12 +272,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      6_0: 3465286685962602723
-      6_1: 6653994858678897968
-      6_2: -9091539399625358973
-      6_3: 781045095500365311
-      6_4: -5358480406590413813
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

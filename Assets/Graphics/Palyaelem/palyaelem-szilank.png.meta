@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: ccb108fde3a2f1442b3e10e07ad3a103
+guid: 4136df2d81717e14099b4003c4daae6d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6470460504253458178
-    second: 3_0
+      213: -7572205081683648492
+    second: palyaelem-szilank_0
   - first:
-      213: 6623151957235123224
-    second: 3_1
+      213: 3666503346699319306
+    second: palyaelem-szilank_1
   - first:
-      213: 2161284124966242572
-    second: 3_2
+      213: -1185448108835215905
+    second: palyaelem-szilank_2
   - first:
-      213: 1646375367856145251
-    second: 3_3
-  - first:
-      213: -6250598388044826599
-    second: 3_4
-  - first:
-      213: -6045798420381719288
-    second: 3_5
-  - first:
-      213: 3486365374980857469
-    second: 3_6
+      213: 4806763083924076479
+    second: palyaelem-szilank_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 720
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -114,17 +105,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 3_0
+      name: palyaelem-szilank_0
       rect:
         serializedVersion: 2
-        x: 93
-        y: 4
-        width: 495
-        height: 691
+        x: 311
+        y: 496
+        width: 649
+        height: 294
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef817ce047e4436a0800000000000000
-      internalID: -6470460504253458178
+      spriteID: 410a6d3f89f1ae690800000000000000
+      internalID: -7572205081683648492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3_1
+      name: palyaelem-szilank_1
       rect:
         serializedVersion: 2
-        x: 94
-        y: 518
-        width: 6
-        height: 6
+        x: 959
+        y: 660
+        width: 11
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,85 +159,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 814ce683d992aeb50800000000000000
-      internalID: 6623151957235123224
+      spriteID: a083bcb2e5902e230800000000000000
+      internalID: 3666503346699319306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3_2
+      name: palyaelem-szilank_2
       rect:
         serializedVersion: 2
-        x: 106
-        y: 485
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c09cd4fe57c6efd10800000000000000
-      internalID: 2161284124966242572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3_3
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 411
-        width: 23
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 363c4089ca919d610800000000000000
-      internalID: 1646375367856145251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3_4
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 458
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91875f612e96149a0800000000000000
-      internalID: -6250598388044826599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3_5
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 446
-        width: 7
+        x: 482
+        y: 491
+        width: 19
         height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -243,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 805a7816e52091ca0800000000000000
-      internalID: -6045798420381719288
+      spriteID: fd5e73dc9317c8fe0800000000000000
+      internalID: -1185448108835215905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3_6
+      name: palyaelem-szilank_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 410
-        width: 14
-        height: 16
+        x: 515
+        y: 490
+        width: 27
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7e94f446de026030800000000000000
-      internalID: 3486365374980857469
+      spriteID: fb771c8be8d05b240800000000000000
+      internalID: 4806763083924076479
       vertices: []
       indices: 
       edges: []
@@ -284,14 +222,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      3_0: -6470460504253458178
-      3_1: 6623151957235123224
-      3_2: 2161284124966242572
-      3_3: 1646375367856145251
-      3_4: -6250598388044826599
-      3_5: -6045798420381719288
-      3_6: 3486365374980857469
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

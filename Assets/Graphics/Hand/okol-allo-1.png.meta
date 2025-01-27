@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: 7637aaf032646d04d81c22db972d2883
+guid: c04f0096c40103e48bab04bd5ce3a1d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -855298285791758126
-    second: 1_0
+      213: 3637835150904360009
+    second: okol-allo-1_0
   - first:
-      213: 9180251791023625898
-    second: 1_1
+      213: 8316222148610389011
+    second: okol-allo-1_1
   - first:
-      213: -549789443665989942
-    second: 1_2
+      213: -3289898582741962143
+    second: okol-allo-1_2
   - first:
-      213: -5167413608083449488
-    second: 1_3
+      213: -3377401967315450778
+    second: okol-allo-1_3
   - first:
-      213: -8408763834710030297
-    second: 1_4
+      213: 2320243942178661943
+    second: okol-allo-1_4
   - first:
-      213: 1144234645273286238
-    second: 1_5
+      213: -3163513985350788501
+    second: okol-allo-1_5
   - first:
-      213: 4141612904334516676
-    second: 1_6
-  - first:
-      213: -5589664403440696418
-    second: 1_7
-  - first:
-      213: 992728304312703659
-    second: 1_8
+      213: -4536445106685144112
+    second: okol-allo-1_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -120,16 +114,29 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1_0
+      name: okol-allo-1_0
       rect:
         serializedVersion: 2
         x: 118
         y: 16
-        width: 496
+        width: 482
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -139,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d8b16a9dbe5124f0800000000000000
-      internalID: -855298285791758126
+      spriteID: 94c7511bbcf2c7230800000000000000
+      internalID: 3637835150904360009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_1
+      name: okol-allo-1_1
       rect:
         serializedVersion: 2
         x: 272
@@ -161,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa65b986d5ec66f70800000000000000
-      internalID: 9180251791023625898
+      spriteID: 3147821abf7296370800000000000000
+      internalID: 8316222148610389011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_2
+      name: okol-allo-1_2
       rect:
         serializedVersion: 2
         x: 119
@@ -183,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ace6705f961ce58f0800000000000000
-      internalID: -549789443665989942
+      spriteID: 162ba9c6baee752d0800000000000000
+      internalID: -3289898582741962143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_3
+      name: okol-allo-1_3
       rect:
         serializedVersion: 2
         x: 131
@@ -205,36 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0799aaa93b8a948b0800000000000000
-      internalID: -5167413608083449488
+      spriteID: 66405721ece0121d0800000000000000
+      internalID: -3377401967315450778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_4
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 419
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 72805f708d11e4b80800000000000000
-      internalID: -8408763834710030297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_5
+      name: okol-allo-1_4
       rect:
         serializedVersion: 2
         x: 128
@@ -249,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e569533f85321ef00800000000000000
-      internalID: 1144234645273286238
+      spriteID: 736afcd7299233020800000000000000
+      internalID: 2320243942178661943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_6
+      name: okol-allo-1_5
       rect:
         serializedVersion: 2
-        x: 128
-        y: 454
+        x: 572
+        y: 40
         width: 6
-        height: 7
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,41 +256,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c168084ef6f97930800000000000000
-      internalID: 4141612904334516676
+      spriteID: b6a9f259ac0f814d0800000000000000
+      internalID: -3163513985350788501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_7
+      name: okol-allo-1_6
       rect:
         serializedVersion: 2
-        x: 128
-        y: 418
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e93854327d58d62b0800000000000000
-      internalID: -5589664403440696418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_8
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 19
-        width: 6
+        x: 574
+        y: 37
+        width: 7
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -315,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: baad8011221e6cd00800000000000000
-      internalID: 992728304312703659
+      spriteID: 0d319f8e53f4b01c0800000000000000
+      internalID: -4536445106685144112
       vertices: []
       indices: 
       edges: []
@@ -335,15 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1_0: -855298285791758126
-      1_1: 9180251791023625898
-      1_2: -549789443665989942
-      1_3: -5167413608083449488
-      1_4: -8408763834710030297
-      1_5: 1144234645273286238
-      1_6: 4141612904334516676
-      1_7: -5589664403440696418
-      1_8: 992728304312703659
+      okol-allo-1_0: 3637835150904360009
+      okol-allo-1_1: 8316222148610389011
+      okol-allo-1_2: -3289898582741962143
+      okol-allo-1_3: -3377401967315450778
+      okol-allo-1_4: 2320243942178661943
+      okol-allo-1_5: -3163513985350788501
+      okol-allo-1_6: -4536445106685144112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
