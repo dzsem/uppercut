@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-seta-4_0: 803638092273203082
+      okol-seta-4_1: 7749716715714359128
+      okol-seta-4_2: -5265783223785776713
+      okol-seta-4_3: -8648886176838435917
+      okol-seta-4_4: -3797887791532174817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

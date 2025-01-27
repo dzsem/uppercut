@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-eses-jobbra_0: -6666353864044293158
+      okol-eses-jobbra_1: -7093473604226932669
+      okol-eses-jobbra_2: 8740018185492017487
+      okol-eses-jobbra_3: -7366900583732655983
+      okol-eses-jobbra_4: 1265537997219333992
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

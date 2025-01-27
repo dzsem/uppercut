@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      palyaelem-szilank_0: -7572205081683648492
+      palyaelem-szilank_1: 3666503346699319306
+      palyaelem-szilank_2: -1185448108835215905
+      palyaelem-szilank_3: 4806763083924076479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -284,7 +284,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      okol-allo-1_0: 3637835150904360009
+      okol-allo-1_1: 8316222148610389011
+      okol-allo-1_2: -3289898582741962143
+      okol-allo-1_3: -3377401967315450778
+      okol-allo-1_4: 2320243942178661943
+      okol-allo-1_5: -3163513985350788501
+      okol-allo-1_6: -4536445106685144112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

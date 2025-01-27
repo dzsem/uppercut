@@ -509,7 +509,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BOSS-okol_0: 1349894158772406792
+      BOSS-okol_1: -5091970760839306511
+      BOSS-okol_10: 25502246428026087
+      BOSS-okol_11: 1622059909293878216
+      BOSS-okol_12: -1518333193319222583
+      BOSS-okol_13: 6251677842592793310
+      BOSS-okol_14: 3164419975833778449
+      BOSS-okol_15: -6408545008951761203
+      BOSS-okol_2: -6253368844793914764
+      BOSS-okol_3: 2221368216853907097
+      BOSS-okol_4: 8480978376035127399
+      BOSS-okol_5: 5798189046205471345
+      BOSS-okol_6: 7811359284783825036
+      BOSS-okol_7: 1684953371987685104
+      BOSS-okol_8: -4776349029631453739
+      BOSS-okol_9: 7716723917365155309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
