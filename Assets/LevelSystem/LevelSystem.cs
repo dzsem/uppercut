@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Threading;
+using TreeEditor;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class LevelSystem : MonoBehaviour {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +32,7 @@ public class LevelSystem : MonoBehaviour {
 
         if (_checkTimer >= checkInterval) {
             _checkTimer = 0f;
+            UnloadPrefabs();
             LoadPrefabs();
         }
     }
@@ -39,13 +42,22 @@ public class LevelSystem : MonoBehaviour {
     */
     private List<GameObject> GenerateMap() {
         List<GameObject> map = new List<GameObject>();
-        map.Add(startScenePrefab);
-        for (int i = 0; i < mapPartCount; ++i) {
-            int sceneIndex = UnityEngine.Random.Range(0, scenePrefabs.Count);
-            Debug.Log(sceneIndex);
-            map.Add(scenePrefabs.ElementAt(sceneIndex));
+        GameObject startPrefabInstance = Instantiate(startScenePrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        startPrefabInstance.SetActive(false);
+        map.Add(startPrefabInstance);
+        int i = 0;
+        for (; i < mapPartCount; i++) {
+            int prefabIndex = UnityEngine.Random.Range(0, scenePrefabs.Count);
+            Debug.Log(prefabIndex);
+            float prefabCenterX = (i + 1) * prefabWidth; // ez a formula ami alapján a scenek helye ki van számolva
+            Vector3 prefabPosition = new Vector3(prefabCenterX, 0f, 0f);
+            GameObject prefabInstance = Instantiate(scenePrefabs.ElementAt(prefabIndex), prefabPosition, Quaternion.identity);
+            prefabInstance.SetActive(false);
+            map.Add(prefabInstance);
         }
-        map.Add(endScenePrefab);
+        GameObject endPrefabInstance = Instantiate(endScenePrefab, new Vector3((i + 1) * prefabWidth, 0f, 0f), Quaternion.identity);
+        endPrefabInstance.SetActive(false);
+        map.Add(endPrefabInstance);
 
         return map;
     }
@@ -67,9 +79,7 @@ public class LevelSystem : MonoBehaviour {
             if (isPlayerInLoadRange) {
                 Debug.Log($"{_map.ElementAt(prefabIndex)} is in load range");
                 _loadedPrefabs.Add(prefabIndex);
-                float prefabCenterX = prefabIndex * prefabWidth; // ez a formula ami alapján a scenek helye ki van számolva
-                Vector3 prefabPosition = new Vector3(prefabCenterX, 0f, 0f);
-                Instantiate(_map.ElementAt(prefabIndex), prefabPosition, Quaternion.identity);
+                _map.ElementAt(prefabIndex).SetActive(true);
             }
         }
 
@@ -77,7 +87,24 @@ public class LevelSystem : MonoBehaviour {
     }
 
     private void UnloadPrefabs() {
+        if (_loadedPrefabs.Count == 0) {
+            return;
+        }
 
+        foreach (int prefabIndex in _loadedPrefabs) {
+            float sceneStartX = (prefabIndex * prefabWidth) - (prefabWidth / 2);
+            float sceneEndX = (prefabIndex * prefabWidth) + (prefabWidth / 2);
+            Debug.Log($"{_map.ElementAt(prefabIndex)}: {sceneStartX}, {sceneEndX}");
+
+            bool isPlayerInLoadRange = Math.Abs(player.transform.position.x - sceneStartX) < prefabWidth || Math.Abs(player.transform.position.x - sceneEndX) < prefabWidth; // Ez a formula, ami alapján kiszámolom, hogy betöltési rangeben van-e vagy sem. Mindig három scenet tölt be: amiben a player áll, az előtte lévőt és az utána lévőt (ha vannak ilyenek)
+            if (!isPlayerInLoadRange) {
+                Debug.Log($"{_map.ElementAt(prefabIndex)} is not in load range");
+                _unloadedPrefabs.Add(prefabIndex);
+                _map.ElementAt(prefabIndex).SetActive(false);
+            }
+        }
+
+        _loadedPrefabs.RemoveAll(prefab => _unloadedPrefabs.Contains(prefab)); // kiszedjuk az unloaded listából, hogy többször ne legyen betöltve semmi sem
     }
 
     public PlayerMover player;
