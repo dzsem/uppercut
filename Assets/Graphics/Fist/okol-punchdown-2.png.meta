@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: f5ed9b68949b98041ab42e26cedecbb2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6276711283777378553
+    second: okol-punchdown-2_0
+  - first:
+      213: 3481754299250868491
+    second: okol-punchdown-2_1
+  - first:
+      213: 3292974703543595413
+    second: okol-punchdown-2_2
+  - first:
+      213: 6492496372882804548
+    second: okol-punchdown-2_3
+  - first:
+      213: 9025113485357684247
+    second: okol-punchdown-2_4
+  - first:
+      213: 1741958886847755557
+    second: okol-punchdown-2_5
+  - first:
+      213: 7197967858579894915
+    second: okol-punchdown-2_6
+  - first:
+      213: -2314989656914818668
+    second: okol-punchdown-2_7
+  - first:
+      213: -1642286525974934902
+    second: okol-punchdown-2_8
+  - first:
+      213: 1600353998752196522
+    second: okol-punchdown-2_9
+  - first:
+      213: 1969409291575221298
+    second: okol-punchdown-2_10
+  - first:
+      213: 6664529871822619156
+    second: okol-punchdown-2_11
+  - first:
+      213: -140267282888129050
+    second: okol-punchdown-2_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 720
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: okol-punchdown-2_0
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 388
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70763c4c754a4e8a0800000000000000
+      internalID: -6276711283777378553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 375
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b01890a861da15030800000000000000
+      internalID: 3481754299250868491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 392
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5913013cb0ff2bd20800000000000000
+      internalID: 3292974703543595413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 392
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f013b6d0bf91a50800000000000000
+      internalID: 6492496372882804548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_4
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 399
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7161558d5e4af3d70800000000000000
+      internalID: 9025113485357684247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 475
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52535e7d06eac2810800000000000000
+      internalID: 1741958886847755557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 375
+        width: 34
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 382755381a154e360800000000000000
+      internalID: 7197967858579894915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_7
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 391
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49983e02c218fdfd0800000000000000
+      internalID: -2314989656914818668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_8
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 357
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8a8ad71b1d6539e0800000000000000
+      internalID: -1642286525974934902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_9
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 383
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7208a9b79953610800000000000000
+      internalID: 1600353998752196522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 360
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23cd1b9f05fb45b10800000000000000
+      internalID: 1969409291575221298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_11
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 362
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41287f4bb9a2d7c50800000000000000
+      internalID: 6664529871822619156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: okol-punchdown-2_12
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 268
+        width: 10
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e508dd36abad0ef0800000000000000
+      internalID: -140267282888129050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      okol-punchdown-2_0: -6276711283777378553
+      okol-punchdown-2_1: 3481754299250868491
+      okol-punchdown-2_10: 1969409291575221298
+      okol-punchdown-2_11: 6664529871822619156
+      okol-punchdown-2_12: -140267282888129050
+      okol-punchdown-2_2: 3292974703543595413
+      okol-punchdown-2_3: 6492496372882804548
+      okol-punchdown-2_4: 9025113485357684247
+      okol-punchdown-2_5: 1741958886847755557
+      okol-punchdown-2_6: 7197967858579894915
+      okol-punchdown-2_7: -2314989656914818668
+      okol-punchdown-2_8: -1642286525974934902
+      okol-punchdown-2_9: 1600353998752196522
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
