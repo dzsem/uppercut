@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 035146648c9a5194390d29e9a86f3cbd
+guid: 7b7556028390055488c1eb5877cf7349
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2133756604732312926
-    second: enemy-csotany_0
+      213: -717534624580711037
+    second: Spawn-hatter-szoba_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy-csotany_0
+      name: Spawn-hatter-szoba_0
       rect:
         serializedVersion: 2
-        x: 185
-        y: 481
-        width: 829
-        height: 318
+        x: 172
+        y: 383
+        width: 937
+        height: 704
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a279c15caf5362e0800000000000000
-      internalID: -2133756604732312926
+      spriteID: 38dc2d38f0eca06f0800000000000000
+      internalID: -717534624580711037
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      enemy-csotany_0: -2133756604732312926
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
