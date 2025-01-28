@@ -6,8 +6,9 @@ public class MainCamera : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _targetPoint = new Vector3(player.transform.position.x, player.transform.position.y, -10f);
-
+        _cameraOffsetY = 3;
+        _targetPoint = new Vector3(player.transform.position.x + _cameraOffsetX, player.transform.position.y + _cameraOffsetY, -10f);
+        transform.position = _targetPoint;
     }
 
     // Update is called once per frame
@@ -28,10 +29,8 @@ public class MainCamera : MonoBehaviour
         if (player.rb.linearVelocityY < 0)
         { // falling
             _cameraOffsetY = Mathf.Lerp(_cameraOffsetY, -2 * cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
-        }
-        else
-        {
-            _cameraOffsetY = 0;
+        } else {
+            _cameraOffsetY = 3;
         }
 
         // A kamera ugrásnál csak akkor vált pozíciót, ha a játékos már leérkezett, így könnyebb ugrani szerintem
