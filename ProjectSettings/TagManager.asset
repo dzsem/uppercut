@@ -5,14 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - openFloor
+  - attackable
+  - attackbox
+  - enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hitbox Layer
   - Water
   - UI
-  - 
+  - EnemyPathingLayer
   - 
   - 
   - 
