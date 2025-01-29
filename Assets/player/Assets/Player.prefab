@@ -388,7 +388,7 @@ MonoBehaviour:
   ground: {fileID: 0}
   _groundCollidersTouched: 0
   _touchesGround: 0
-  walksSpeed: 10
+  walksSpeed: 5
   groundFriction: 0.1
   airFriction: 0
   jumpForce: 1400
