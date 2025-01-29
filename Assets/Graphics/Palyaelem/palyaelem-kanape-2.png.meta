@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      palyaelem-kanape-2_0: 4306936917842498961
+      palyaelem-kanape-2_1: 1416172379010877720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

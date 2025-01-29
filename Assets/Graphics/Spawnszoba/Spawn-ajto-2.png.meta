@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spawn-ajto-2_0: 102243667125160482
+      Spawn-ajto-2_1: -4515194074571851516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-galamb-4-2_0: 4204275684720345593
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

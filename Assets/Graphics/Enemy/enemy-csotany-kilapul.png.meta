@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-csotany-kilapul_0: 2709527212418190640
+      enemy-csotany-kilapul_1: -4743898800593643736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

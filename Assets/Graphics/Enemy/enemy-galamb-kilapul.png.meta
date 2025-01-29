@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-galamb-kilapul_0: -5458392944354856915
+      enemy-galamb-kilapul_1: 4104137583860499883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

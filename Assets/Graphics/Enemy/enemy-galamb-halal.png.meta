@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-galamb-halal_0: 5566262000032379143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

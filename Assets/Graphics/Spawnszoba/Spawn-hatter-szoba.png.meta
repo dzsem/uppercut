@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spawn-hatter-szoba_0: -717534624580711037
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

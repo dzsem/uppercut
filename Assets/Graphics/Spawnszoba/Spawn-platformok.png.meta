@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spawn-platformok_0: -8757967897166823423
+      Spawn-platformok_1: 6687755240148763142
+      Spawn-platformok_2: -7754584295944001426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

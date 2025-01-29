@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spawn-eloter-szoba_0: 471925491135471476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

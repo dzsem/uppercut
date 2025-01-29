@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-csotany-halal_0: -5888318413973363595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy-patkany-halal_0: 6330651177852289535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

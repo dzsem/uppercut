@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spawn-fotel_0: -1638981827215528770
+      Spawn-fotel_1: 6167557554403331794
+      Spawn-fotel_2: 5039946803526524884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

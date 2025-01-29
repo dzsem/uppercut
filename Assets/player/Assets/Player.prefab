@@ -294,8 +294,9 @@ MonoBehaviour:
   uppercutPunchBox: {fileID: 4677211192447740104}
   disableInput: 0
   ground: {fileID: 0}
-  touchesGround: 0
-  walksSpeed: 10
+  _groundCollidersTouched: 0
+  _touchesGround: 0
+  walksSpeed: 5
   groundFriction: 0.1
   airFriction: 0
   jumpForce: 1400
