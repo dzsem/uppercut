@@ -31,8 +31,7 @@ public class PlayerMover : MonoBehaviour
             if (newTouchesGround != TouchesGround)
             {
                 _touchesGround = newTouchesGround;
-                // amikor animálva lesz: (lásd grafika patch)
-                // GetComponent<Animator>().SetBool("groundTouch", TouchesGround)
+                GetComponent<Animator>().SetBool("groundTouch", TouchesGround);
             }
 
             _groundCollidersTouched = value;
