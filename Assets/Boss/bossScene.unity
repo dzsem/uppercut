@@ -694,6 +694,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220934647626748014, guid: 9d30f4a1f544d19448d3afa9ad508487, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220934647626748014, guid: 9d30f4a1f544d19448d3afa9ad508487, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 491687516298965819, guid: 9d30f4a1f544d19448d3afa9ad508487, type: 3}
       propertyPath: m_Name
       value: bossLevel
@@ -748,7 +756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213675254874114154, guid: 9d30f4a1f544d19448d3afa9ad508487, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.43
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4755645212417950418, guid: 9d30f4a1f544d19448d3afa9ad508487, type: 3}
