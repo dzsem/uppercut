@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -13,6 +11,7 @@ public class PlayerMover : MonoBehaviour
     public Rigidbody2D rb;
     public BoxCollider2D dashPunchBox;
     public BoxCollider2D uppercutPunchBox;
+    public CostumeTrigger groundTouchTrigger;
 
     [Header("Misc beállítások")]
     public bool disableInput = false;
@@ -111,6 +110,9 @@ public class PlayerMover : MonoBehaviour
         _dashStatus.animator = GetComponent<Animator>();
         _punchdownStatus.animator = GetComponent<Animator>();
         _uppercutStatus.animator = GetComponent<Animator>();
+
+        groundTouchTrigger.EnterTrigger += OnGroundEnter;
+        groundTouchTrigger.ExitTrigger += OnGroundExit;
     }
 
     // Update is called once per frame
@@ -383,6 +385,8 @@ public class PlayerMover : MonoBehaviour
     /// Megállapítja, hogy otherObject lehet-e platform. Mivel a punchboxok ugyanabban a gameobjecten belül
     /// vannak, és nincsen felettük rigidbody, ezért összevonódnak; ekkor minden megütött objektum a 3-as (Hitbox)
     /// layeren belül lesz. Ezeket ki kell zárni:(
+    /// 
+    /// Update: már nem biztos hogy vannak layer problémák, külön hitbox trigger van
     /// </summary>
     /// <param name="otherObject">A collision-on belüli másik gameobject.</param>
     /// <returns></returns>
@@ -391,28 +395,28 @@ public class PlayerMover : MonoBehaviour
         return otherObject != gameObject && otherObject.layer == gameObject.layer && otherObject.tag != "enemy";
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // A GroundCheckHitbox CustomTrigger-éhez kapcsolódik. Lásd: Start()
+    private void OnGroundEnter(Collider2D collision)
     {
-        if (IsGameObjectGround(collision.gameObject))
-        {
-            //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
-            //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
-            GroundCollidersTouched += 1;
-            col.sharedMaterial.friction = groundFriction;
-            ground = collision.gameObject;
-            col.enabled = true;
-        }
+        if (!IsGameObjectGround(collision.gameObject))
+            return;
+
+        // Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}")
+
+        GroundCollidersTouched += 1;
+        col.sharedMaterial.friction = groundFriction;
+        ground = collision.gameObject;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    // A GroundCheckHitbox CustomTrigger-éhez kapcsolódik. Lásd: Start()
+    private void OnGroundExit(Collider2D collision)
     {
-        if (IsGameObjectGround(collision.gameObject))
-        {
-            //Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}");
+        if (!IsGameObjectGround(collision.gameObject))
+            return;
 
-            GroundCollidersTouched -= 1;
-            //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
-            col.sharedMaterial.friction = airFriction;
-        }
+        // Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}")
+
+        GroundCollidersTouched -= 1;
+        col.sharedMaterial.friction = airFriction;
     }
 }
