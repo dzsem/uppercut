@@ -39,7 +39,7 @@ public class MainCamera : MonoBehaviour
         }
 
         // A kamera ugrásnál csak akkor vált pozíciót, ha a játékos már leérkezett, így könnyebb ugrani szerintem
-        if (player.touchesGround || _fallTimer >= fallDelay) { // platform lock
+        if (player.TouchesGround || _fallTimer >= fallDelay) { // platform lock
             _targetPoint.y = player.transform.position.y + _cameraOffsetY;
         }
 
