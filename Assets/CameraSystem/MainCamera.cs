@@ -6,46 +6,55 @@ public class MainCamera : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _cameraOffsetY = 3;
+        _fallTimer = 0f;
+        _cameraOffsetX = offsetDistanceX;
+        _cameraOffsetY = offsetDistanceY;
         _targetPoint = new Vector3(player.transform.position.x + _cameraOffsetX, player.transform.position.y + _cameraOffsetY, -10f);
         transform.position = _targetPoint;
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {   
         // Ezekkel kicsit eltolom abba az irányba a kamerát, amerre a karakter néz, hogy több látszódjon a pályából abba az irányba.
-        if (player.rb.linearVelocityX > 0) { // facing right
-            _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
-        } else if (player.rb.linearVelocityX < 0) { // facing left
-            _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, -cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
+        if (player.transform.rotation.y == 0) { // facing right
+            // _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, offsetDistance, offsetSmoothing * Time.deltaTime);
+            _cameraOffsetX = offsetDistanceX;
+        } else { // facing left
+            // _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, -offsetDistance, offsetSmoothing * Time.deltaTime);
+            _cameraOffsetX = -offsetDistanceX;
         }
 
         // Esésnél kicsit lentebb néz a kamera, hogy a játékos jobban lássa, hogy hova fog érkezni
         // Ez még nem működik olyan jól szerintem
         if (player.rb.linearVelocityY < 0) { // falling
-            _cameraOffsetY = Mathf.Lerp(_cameraOffsetY, -2 * cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
+            _fallTimer += Time.deltaTime;
+            if (_fallTimer >= fallDelay) {
+                // _cameraOffsetY = Mathf.Lerp(_cameraOffsetY, -2 * cameraOffsetDistance, cameraOffsetSpeed * Time.deltaTime);
+                _cameraOffsetY = -2 * offsetDistanceY;
+            }
         } else {
-            _cameraOffsetY = 3;
+            _fallTimer = 0f;
+            _cameraOffsetY = offsetDistanceY;
         }
 
         // A kamera ugrásnál csak akkor vált pozíciót, ha a játékos már leérkezett, így könnyebb ugrani szerintem
-        if (player.touchesGround || player.rb.linearVelocityY < 0) { // platform lock
+        if (player.touchesGround || _fallTimer >= fallDelay) { // platform lock
             _targetPoint.y = player.transform.position.y + _cameraOffsetY;
         }
 
         _targetPoint.x = player.transform.position.x + _cameraOffsetX;
 
         // Smoothing
-        transform.position = Vector3.Lerp(transform.position, _targetPoint, cameraSpeed * Time.deltaTime);
-        // Vector3 velocity = Vector3.zero;
-        // transform.position = Vector3.SmoothDamp(transform.position, _targetPoint, ref velocity, cameraSpeed);
+        transform.position = Vector3.Lerp(transform.position, _targetPoint, offsetSmoothing * Time.deltaTime);
     }
 
     public PlayerMover player;
-    public float cameraSpeed;
-    public float cameraOffsetDistance;
-    public float cameraOffsetSpeed;
+    public float offsetDistanceX = 3.5f;
+    public float offsetDistanceY = 3f;
+    public float offsetSmoothing = 5f;
+    public float fallDelay = 0.5f;
+    private float _fallTimer;
     private Vector3 _targetPoint;
     private float _cameraOffsetX;
     private float _cameraOffsetY;
