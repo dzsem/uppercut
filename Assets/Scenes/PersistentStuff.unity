@@ -331,9 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 592310600}
   scenePrefabs:
-  - {fileID: 3510132206603994086, guid: 3058608f1a6dfcaee909b6108a395c0e, type: 3}
-  - {fileID: 823094085419498111, guid: 63943efb129fafc5b89c0dbeb6468073, type: 3}
-  - {fileID: 7895448860608664506, guid: 7ee462d0c9ff9cee1b2591b5f7408b69, type: 3}
+  - {fileID: 7738986560122099916, guid: 9d51e4d7dfa8b024abc062c044f45c7b, type: 3}
   startScenePrefab: {fileID: 3281012050441658256, guid: 83a06be0df151ac4697cae765b52e17b, type: 3}
   endScenePrefab: {fileID: 7895448860608664506, guid: 7ee462d0c9ff9cee1b2591b5f7408b69, type: 3}
   mapPartCount: 10

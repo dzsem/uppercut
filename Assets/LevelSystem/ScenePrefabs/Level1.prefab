@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 263015030392985734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9792948, y: 6.211257, z: -0.10410325}
+  m_LocalPosition: {x: -0.47553658, y: 0.87725925, z: -0.1316229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 7244092843409628729}
   - {fileID: 4160728671437501966}
   - {fileID: 8727966217399577105}
-  m_Father: {fileID: 8970308461405715935}
+  m_Father: {fileID: 4477922864880969387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573661477644548236
 GameObject:
@@ -446,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 1135096455205624570}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.4053, y: 0.11151934, z: -0.04725528}
+  m_LocalPosition: {x: -2.901542, y: -5.2224784, z: -0.07477493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -455,7 +455,7 @@ Transform:
   - {fileID: 8963415511640090616}
   - {fileID: 7184792901753810423}
   - {fileID: 4531676594632795966}
-  m_Father: {fileID: 8970308461405715935}
+  m_Father: {fileID: 4477922864880969387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253510780817963363
 GameObject:
@@ -734,8 +734,8 @@ Transform:
   m_GameObject: {fileID: 1774463430839354501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8815415, y: -8.823861, z: 0.056847967}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.9645, y: -8.823861, z: 0.056847967}
+  m_LocalScale: {x: 1.0081, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1636522477899358104}
@@ -1041,7 +1041,7 @@ Transform:
   m_GameObject: {fileID: 2721003272528047495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.7, y: 5, z: -0.03765697}
+  m_LocalPosition: {x: -6.79, y: 5, z: -0.03765697}
   m_LocalScale: {x: 2.3922, y: 2.3922, z: 2.3922}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1306,12 +1306,46 @@ Transform:
   m_GameObject: {fileID: 4208633748818776550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9792948, y: 6.211257, z: -0.10410325}
+  m_LocalPosition: {x: -0.47553658, y: 0.87725925, z: -0.1316229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1751216304764847037}
   - {fileID: 2830125426716657961}
+  m_Father: {fileID: 4477922864880969387}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5173029884247032229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4477922864880969387}
+  m_Layer: 0
+  m_Name: Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4477922864880969387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5173029884247032229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.5037582, y: 8.35, z: 0.027519647}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6715217669163403992}
+  - {fileID: 1116340936253113110}
+  - {fileID: 1636522477899358104}
   m_Father: {fileID: 8970308461405715935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5423943723523921191
@@ -2324,9 +2358,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6715217669163403992}
-  - {fileID: 1116340936253113110}
-  - {fileID: 1636522477899358104}
+  - {fileID: 4477922864880969387}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8555863756664812711
