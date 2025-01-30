@@ -40,7 +40,8 @@ public class PlayerMover : MonoBehaviour
                 _touchesGround = newTouchesGround;
                 GetComponent<Animator>().SetBool("groundTouch", TouchesGround);
 
-                if (TouchesGround) {
+                if (TouchesGround)
+                {
                     onGroundTouch?.Invoke();
                 }
             }
