@@ -12,6 +12,11 @@ public class SpawnRoomDoor : MonoBehaviour
 
     public void OnHit(int damage)
     {
+        PlayerMover player = FindFirstObjectByType<PlayerMover>();
+
+        if (player?.GetAttackType() != PlayerMover.EAttackType.PUNCH)
+            return;
+
         isBroken = true;
         soundEmitter.Play();
         transform.Translate(new Vector3(_openDoorTextureOffset.x, _openDoorTextureOffset.y, 0.0f));
