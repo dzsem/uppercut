@@ -54,6 +54,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool _isInvulnerableByDmg = false;
     [SerializeField] private int _invulnerabilityCountByDmg = 0;
 
+    public void Start() {
+        onDeath.AddListener(OnDeathCallback);
+    }
+
     /// <summary>
     /// Megadja, hogy akármilyen okból sebezhetetlen-e a player.
     /// </summary>
@@ -144,5 +148,9 @@ public class PlayerHealth : MonoBehaviour
 
             StartCoroutine(DoInvulnerability());
         }
+    }
+
+    private void OnDeathCallback() {
+        playerMover.disableInput = true;
     }
 }
