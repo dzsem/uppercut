@@ -184,6 +184,7 @@ public class PlayerHealth : MonoBehaviour
     private void OnDamageCallback(int hp) {
         Debug.Log("OnDamageCallback called");
         StartCoroutine(UpdateVignetteEffect());
+        FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
     }
 
     private IEnumerator UpdateVignetteEffect() {
