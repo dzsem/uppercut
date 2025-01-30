@@ -21,8 +21,8 @@ public class EnemyMovements : MonoBehaviour
     public event Action onTurningToEnd;
     public event Action onTurningToStart;
 
-    private float timeOfCollison = 0f;
-    private bool isWithinOneSecOfCollison=false;
+    //private float timeOfCollison = 0f;
+    //private bool isWithinOneSecOfCollison=false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +41,10 @@ public class EnemyMovements : MonoBehaviour
 
 
         direction = pointEnding.transform.position;
+        virtualStart();
     }
+
+    protected virtual void virtualStart() { }
 
     void Update()
     {
@@ -77,17 +80,14 @@ public class EnemyMovements : MonoBehaviour
 
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        timeOfCollison=Time.time;
-        isWithinOneSecOfCollison = true;
-    }
 
+    protected virtual void SetDirection() { return;}
 
-    protected virtual void TurningHandler(Collider2D collider)
+    protected void TurningHandler(Collider2D collider)
     {
+
         if (collider.gameObject.Equals(pointEnding) || collider.gameObject.Equals(pointStarting))
-        {
+        {Debug.Log(collider.gameObject.name);
             if (direction.x.Equals(pointEnding.transform.position.x))
             {
                 onTurningToStart?.Invoke();
@@ -96,6 +96,7 @@ public class EnemyMovements : MonoBehaviour
             {
                 onTurningToEnd?.Invoke();
             }
+            SetDirection();
         }
     }
 

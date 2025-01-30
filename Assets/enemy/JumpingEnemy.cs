@@ -8,50 +8,74 @@ public class JumpingEnemy : EnemyMovements
     public JumpPoint jumpPoint;
     private bool isJumping = false;
     private bool isSetDirection = false;
+    private CostumeTrigger jumpFromTrigger;
 
+    public event Action jumpOnEntry;
+    private float xVelocity;
+
+
+
+    protected override void virtualStart()
+    {
+        jumpFromTrigger = jumpPoint.GetJumpFromPointTrigger();
+        jumpFromTrigger.EnterTrigger += onJumpPointEnter;
+        jumpOnEntry += jump;
+        xVelocity = GetXDirection(this.gameObject.transform.position, direction).x;
+    }
     protected override void CostumVirtualMovementUpdate()
     {
+
         if (!playerInRange)
         {
-            if (!isJumping)
-            {
                 if (!isSetDirection)
                 {
+                    Debug.Log("Set Direction");
+                    xVelocity = GetXDirection(this.gameObject.transform.position, direction).x;
                     rb.linearVelocity =
-                        new Vector2(GetXDirection(this.gameObject.transform.position, direction).x * movementSpeed, 0);
+                        new Vector2( xVelocity* movementSpeed, 0);
                     isSetDirection = true;
                 }
-            }
-        }
+
+        }else{}
     }
 
     Vector2 GetXDirection(Vector2 pointA, Vector2 pointB)
     {
-        float direction = pointB.x - pointA.x;
-        if (direction > 0) return Vector2.right;  // (1,0)
-        if (direction < 0) return Vector2.left;   // (-1,0)
-        return Vector2.zero; // Ha a pontok x koordinátája megegyezik
+        float directionf = pointB.x - pointA.x;
+        if (directionf > 0) return Vector2.right;
+        if (directionf < 0) return Vector2.left;
+        return Vector2.zero;
     }
 
     public void jump()
     {
-        var jumpToPoint = jumpPoint.GetJumpToPoint();
-        var jumpFromPoint = jumpPoint.GetJumpFromPointTrigger().gameObject;
-        var jumpFromTrigger = jumpPoint.GetJumpFromPointTrigger();
 
         float gravity = Mathf.Abs(Physics2D.gravity.y);
-        float time = Mathf.Abs(jumpPoint.GetJumpWidth() / movementSpeed);
-        float initialJumpVelocity = (jumpPoint.GetJumpHeight()-0.5f*gravity*Mathf.Sqrt(time))/time;
-        rb.linearVelocity=new Vector2(movementSpeed*Mathf.Sign(jumpPoint.GetJumpWidth()),initialJumpVelocity);
+        float initialJumpVelocity = Mathf.Sqrt(2*gravity*jumpPoint.GetJumpHeight()*this.gameObject.GetComponent<Rigidbody2D>().mass);
+        rb.linearVelocity=new Vector2(xVelocity*1.2f,initialJumpVelocity*1.1f);
         isJumping = true;
+        Debug.Log(rb.linearVelocity);
+        Debug.Log(jumpPoint.GetJumpHeight());
     }
 
-    void OnCollisionEnter2D(Collision2D collision) => isJumping = false;
-
-    protected override void TurningHandler(Collider2D collider)
+    void onJumpPointEnter(Collider2D collider)
     {
-        base.TurningHandler(collider);
-        isSetDirection = false;
+
+        if (collider.gameObject.Equals(hitboxTrigger.gameObject))
+        {
+            jumpOnEntry?.Invoke();
+        }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isJumping)
+        {
+            isJumping = false;
+            isSetDirection = false;
+        }
+    }
+
+
+    protected override void SetDirection() => isSetDirection = false;
 }
