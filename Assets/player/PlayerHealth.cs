@@ -146,23 +146,25 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnDeathCallback() {
+    public void OnDeathCallback()
+    {
         playerMover.disableInput = true;
     }
 
-    private void OnDamageCallback(int hp) {
+    public void OnDamageCallback(int hp)
+    {
         Debug.Log("OnDamageCallback called");
         // StartCoroutine(UpdateVignetteEffect());
-        FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
+        FindFirstObjectByType<MainCamera>().ShakeCamera(0.8f, 1f);
     }
 
     // private IEnumerator UpdateVignetteEffect() {
     //     float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
     //     float power = shaderMaterial.GetFloat(_vignettePower);
-        
+
     //     float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
     //     float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
-        
+
     //     float elapsed = 0f;
 
     //     while (elapsed < vignetteSmoothing) {

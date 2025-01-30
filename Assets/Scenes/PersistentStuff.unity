@@ -269,15 +269,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700b416227be78f5fb6497899791e20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 661548214}
+  player: {fileID: 592310600}
   offsetDistanceX: 3.5
   offsetDistanceY: 3
   offsetSmoothing: 1
   fallDelay: 0.5
---- !u!114 &661548214 stripped
+--- !u!114 &592310600 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5656839993596156559, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
-  m_PrefabInstance: {fileID: 1680093268}
+  m_PrefabInstance: {fileID: 2091963919}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db24758a8d3cba819968536716ca1ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 661548214}
+  player: {fileID: 592310600}
   scenePrefabs:
   - {fileID: 3510132206603994086, guid: 3058608f1a6dfcaee909b6108a395c0e, type: 3}
   - {fileID: 823094085419498111, guid: 63943efb129fafc5b89c0dbeb6468073, type: 3}
@@ -339,7 +339,7 @@ MonoBehaviour:
   mapPartCount: 10
   prefabWidth: 30
   checkInterval: 1
---- !u!1001 &1680093268
+--- !u!1001 &2091963919
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -349,11 +349,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181766320329589493, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: -0.030240834
       objectReference: {fileID: 0}
     - target: {fileID: 7181766320329589493, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7
+      value: 2.207581
       objectReference: {fileID: 0}
     - target: {fileID: 7181766320329589493, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -402,4 +402,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1070128490}
-  - {fileID: 1680093268}
+  - {fileID: 2091963919}
