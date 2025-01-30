@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6291369111447568825}
   - component: {fileID: 5391660303068415191}
   - component: {fileID: 1834226282126847112}
+  - component: {fileID: 7923673268654128118}
   m_Layer: 0
   m_Name: SpawnRoomDoor
   m_TagString: Untagged
@@ -137,7 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicsCollider: {fileID: 3486747313964220896}
   animator: {fileID: 1834226282126847112}
+  sprite: {fileID: 5539151457776675491}
   isBroken: 0
+  _openDoorTextureOffset: {x: 0.35, y: 0}
 --- !u!95 &1834226282126847112
 Animator:
   serializedVersion: 7
@@ -160,6 +163,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &7923673268654128118
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852779395661101769}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3466287341560251222
 GameObject:
   m_ObjectHideFlags: 0
