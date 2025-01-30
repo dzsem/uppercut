@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -54,8 +57,32 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool _isInvulnerableByDmg = false;
     [SerializeField] private int _invulnerabilityCountByDmg = 0;
 
+    [Header("HP Vignette shader cuccok")]
+    public ScriptableRendererFeature shader;
+    public Material shaderMaterial;
+    public const float vignetteIntensityMax = 1.4f;
+    public const float vignetteIntensityStart = 0.4f;
+    public const float vignettePowerStart = 5.3f;
+    public const float vignettePowerMin = 0.3f;
+    public const float vignetteSmoothing = 0.5f;
+    private float _intensityStep;
+    private float _powerStep;
+    private int _vignetteIntensity = Shader.PropertyToID("_vignetteIntensity");
+    private int _vignettePower = Shader.PropertyToID("_vignettePower");
+
     public void Start() {
+        // _intensityStep = vignetteIntensityMax / (maxHealth);
+        // _powerStep = vignettePowerMax / (maxHealth * 3f);
+        _intensityStep = 0.3f;
+        _powerStep = 1f;
+        Debug.Log("intensity step: " + _intensityStep);
+        Debug.Log("power step: " + _powerStep);
+
+        shaderMaterial.SetFloat(_vignetteIntensity, vignetteIntensityStart);
+        shaderMaterial.SetFloat(_vignettePower, vignettePowerStart);
+        shader.SetActive(true);
         onDeath.AddListener(OnDeathCallback);
+        onDamage.AddListener(OnDamageCallback);
     }
 
     /// <summary>
@@ -152,5 +179,37 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnDeathCallback() {
         playerMover.disableInput = true;
+    }
+
+    private void OnDamageCallback(int hp) {
+        Debug.Log("OnDamageCallback called");
+        StartCoroutine(UpdateVignetteEffect());
+    }
+
+    private IEnumerator UpdateVignetteEffect() {
+        float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
+        float power = shaderMaterial.GetFloat(_vignettePower);
+        
+        float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
+        float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
+        
+        float elapsed = 0f;
+
+        while (elapsed < vignetteSmoothing) {
+            elapsed += Time.deltaTime;
+            float t = elapsed / vignetteSmoothing;
+
+            intensity = Mathf.Lerp(intensity, targetIntensity, t);
+            power = Mathf.Lerp(power, targetPower, t);
+
+            shaderMaterial.SetFloat(_vignetteIntensity, intensity);
+            shaderMaterial.SetFloat(_vignettePower, power);
+
+            Debug.Log("Lerping: Intensity=" + intensity + " Power=" + power);
+            yield return null;
+        }
+
+        shaderMaterial.SetFloat(_vignetteIntensity, targetIntensity);
+        shaderMaterial.SetFloat(_vignettePower, targetPower);
     }
 }
