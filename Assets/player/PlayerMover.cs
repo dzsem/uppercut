@@ -299,7 +299,7 @@ public class PlayerMover : MonoBehaviour
         // Horizontal movement + dash //
         if (hasHorizontalInput)
         {
-            rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal"));
+            rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal") * Time.deltaTime);
 
             // 0 kizárása
             _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
@@ -307,7 +307,10 @@ public class PlayerMover : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X) && CanDash())
         {
-            rb.AddForce(Vector2.right * dashForce * _facingDirection);
+            float inputtedDirection = Input.GetAxis("Horizontal");
+            int dashDirection = hasHorizontalInput ? Math.Sign(inputtedDirection) : _facingDirection;
+
+            rb.AddForce(Vector2.right * dashForce * dashDirection);
             StartCoroutine(DoDash());
         }
 

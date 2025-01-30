@@ -146,11 +146,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnDeathCallback() {
+    private void OnDeathCallback()
+    {
         playerMover.disableInput = true;
     }
 
-    private void OnDamageCallback(int hp) {
+    private void OnDamageCallback(int hp)
+    {
         Debug.Log("OnDamageCallback called");
         // StartCoroutine(UpdateVignetteEffect());
         FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
@@ -159,10 +161,10 @@ public class PlayerHealth : MonoBehaviour
     // private IEnumerator UpdateVignetteEffect() {
     //     float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
     //     float power = shaderMaterial.GetFloat(_vignettePower);
-        
+
     //     float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
     //     float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
-        
+
     //     float elapsed = 0f;
 
     //     while (elapsed < vignetteSmoothing) {

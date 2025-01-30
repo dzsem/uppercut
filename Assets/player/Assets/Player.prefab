@@ -388,7 +388,7 @@ MonoBehaviour:
   ground: {fileID: 0}
   _groundCollidersTouched: 0
   _touchesGround: 0
-  walksSpeed: 10
+  walksSpeed: 800
   groundFriction: 0.1
   airFriction: 0
   jumpForce: 1400
@@ -396,7 +396,7 @@ MonoBehaviour:
   uppercutMinimalDuration: 0.3
   dashDuration: 0.2
   dashCooldown: 0.8
-  dashForce: 800
+  dashForce: 1000
   punchdownForce: 800
   _dashRefreshed: 0
   _uppercutRefreshed: 0
