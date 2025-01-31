@@ -366,9 +366,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1238941177}
-  cameraSpeed: 3
-  cameraOffsetDistance: 1
-  cameraOffsetSpeed: 2
+  offsetDistanceX: 3.5
+  offsetDistanceY: 3
+  offsetSmoothing: 5
+  fallDelay: 0.5
 --- !u!1001 &614694170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,6 +806,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4458821121884713976, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: -422838302849755775, guid: 424799608f7334c24bf367e4bbfa7f9a, type: 2}
+    - target: {fileID: 4458821121884713976, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+      propertyPath: shaderMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e122810f2ef5852abf79ce58d9ed478, type: 2}
     - target: {fileID: 7181766320329589493, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.03
@@ -965,3 +974,4 @@ SceneRoots:
   - {fileID: 1624200999}
   - {fileID: 1017517161}
   - {fileID: 2101025457}
+  - {fileID: 519420032}
