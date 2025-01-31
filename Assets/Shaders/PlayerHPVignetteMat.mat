@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _vignetteIntensity: 1.4
-    - _vignettePower: 1.0741444
+    - _vignetteIntensity: 0.4
+    - _vignettePower: 5.3
     m_Colors:
     - _vignetteColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -347,6 +347,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4458821121884713976, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: -422838302849755775, guid: 424799608f7334c24bf367e4bbfa7f9a, type: 2}
+    - target: {fileID: 4458821121884713976, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+      propertyPath: deathScene
+      value: 
+      objectReference: {fileID: 102900000, guid: 70ce6b98bf4caa4af8dfd7d0f7082864, type: 3}
+    - target: {fileID: 4458821121884713976, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
+      propertyPath: shaderMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e122810f2ef5852abf79ce58d9ed478, type: 2}
     - target: {fileID: 7181766320329589493, guid: cb8d9d9afd6bf7f4e904a147e55e24b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.030240834
