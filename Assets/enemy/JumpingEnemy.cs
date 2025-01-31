@@ -27,7 +27,16 @@ public class JumpingEnemy : EnemyMovements
 
         if (!playerInRange)
         {
-                if (!isSetDirection)
+            if (!isJumping)
+            {
+                if (Mathf.Abs( rb.linearVelocity.x) < Mathf.Abs( xVelocity*movementSpeed))
+                {
+                    rb.linearVelocity =
+                        new Vector2( xVelocity* movementSpeed, 0);
+                }
+            }
+
+            if (!isSetDirection)
                 {
                     Debug.Log("Set Direction");
                     xVelocity = GetXDirection(this.gameObject.transform.position, direction).x;
