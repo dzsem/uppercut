@@ -68,8 +68,6 @@ public class PlayerHealth : MonoBehaviour
     public const float vignettePowerStart = 5.3f;
     public const float vignettePowerMin = 0.3f;
     public const float vignetteSmoothing = 0.5f;
-    private float _intensityStep;
-    private float _powerStep;
     private int _vignetteIntensity = Shader.PropertyToID("_vignetteIntensity");
     private int _vignettePower = Shader.PropertyToID("_vignettePower");
     
@@ -79,10 +77,10 @@ public class PlayerHealth : MonoBehaviour
     public void Start() {
         // _intensityStep = vignetteIntensityMax / (maxHealth);
         // _powerStep = vignettePowerMax / (maxHealth * 3f);
-        _intensityStep = 0.3f;
-        _powerStep = 1f;
-        Debug.Log("intensity step: " + _intensityStep);
-        Debug.Log("power step: " + _powerStep);
+        // _intensityStep = 0.3f;
+        // _powerStep = 1f;
+        // Debug.Log("intensity step: " + _intensityStep);
+        // Debug.Log("power step: " + _powerStep);
 
         shaderMaterial.SetFloat(_vignetteIntensity, vignetteIntensityStart);
         shaderMaterial.SetFloat(_vignettePower, vignettePowerStart);
@@ -192,14 +190,17 @@ public class PlayerHealth : MonoBehaviour
     public void OnDamageCallback(int hp)
     {
         Debug.Log("OnDamageCallback called");
-        StartCoroutine(UpdateVignetteEffect());
+        StartCoroutine(UpdateVignetteEffect(hp));
         FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
     }
 
-    private IEnumerator UpdateVignetteEffect() {
+    private IEnumerator UpdateVignetteEffect(int hp) {
         float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
         float power = shaderMaterial.GetFloat(_vignettePower);
         
+        float _powerStep = (float) Math.Sqrt(hp);
+        float _intensityStep = _powerStep * 0.75f;
+
         float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
         float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
         
