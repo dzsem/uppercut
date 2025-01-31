@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -12,13 +11,40 @@ public class PlayerMover : MonoBehaviour
     public Rigidbody2D rb;
     public BoxCollider2D dashPunchBox;
     public BoxCollider2D uppercutPunchBox;
+    public CostumeTrigger groundTouchTrigger;
 
     [Header("Misc beállítások")]
     public bool disableInput = false;
 
     [Header("Walking and jumping")]
     public GameObject ground;
-    public bool touchesGround;
+
+    [SerializeField] private int _groundCollidersTouched = 0;
+
+    private int GroundCollidersTouched
+    {
+        get => _groundCollidersTouched;
+        set
+        {
+            bool newTouchesGround = value > 0;
+
+            if (newTouchesGround != TouchesGround)
+            {
+                _touchesGround = newTouchesGround;
+                GetComponent<Animator>().SetBool("groundTouch", TouchesGround);
+            }
+
+            _groundCollidersTouched = value;
+        }
+    }
+
+    [SerializeField] private bool _touchesGround = false;
+
+    public bool TouchesGround
+    {
+        get => _touchesGround;
+    }
+
     public float walksSpeed;
 
     /// <summary>
@@ -84,6 +110,9 @@ public class PlayerMover : MonoBehaviour
         _dashStatus.animator = GetComponent<Animator>();
         _punchdownStatus.animator = GetComponent<Animator>();
         _uppercutStatus.animator = GetComponent<Animator>();
+
+        groundTouchTrigger.EnterTrigger += OnGroundEnter;
+        groundTouchTrigger.ExitTrigger += OnGroundExit;
     }
 
     // Update is called once per frame
@@ -152,7 +181,7 @@ public class PlayerMover : MonoBehaviour
         RefreshUppercut();
         RefreshDash();
 
-        if (_punchdownStatus.IsPerforming() && (rb.linearVelocityY > 0f || touchesGround))
+        if (_punchdownStatus.IsPerforming() && (rb.linearVelocityY > 0f || TouchesGround))
         {
             _punchdownStatus.Status = EActionStatus.AVAILABLE;
         }
@@ -201,8 +230,6 @@ public class PlayerMover : MonoBehaviour
 
     private IEnumerator DoUppercut()
     {
-        touchesGround = false;
-
         _uppercutStatus.Status = EActionStatus.PERFORMING;
 
         yield return new WaitForSeconds(uppercutMinimalDuration);
@@ -230,13 +257,13 @@ public class PlayerMover : MonoBehaviour
         {
             // FALLTHROUGH //
             // down-ra vagy s-re átesik, ha földön van
-            if (ground.tag == "openFloor" && touchesGround)
+            if (ground.tag == "openFloor" && TouchesGround)
             {
                 col.isTrigger = true;
             }
 
             // Punchdown //
-            if (Input.GetKeyDown(KeyCode.X) && !touchesGround
+            if (Input.GetKeyDown(KeyCode.X) && !TouchesGround
                 && CanPunchDown())
             {
                 rb.linearVelocityY = 0.0f;
@@ -249,7 +276,7 @@ public class PlayerMover : MonoBehaviour
 
         // Uppercut //
         // space-re uppercut-ol, ha földön van és nyomod a fel inputot
-        if (Input.GetKeyDown(KeyCode.Space) && touchesGround)
+        if (Input.GetKeyDown(KeyCode.Space) && TouchesGround)
         {
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
@@ -259,7 +286,7 @@ public class PlayerMover : MonoBehaviour
 
         // szűnjön meg az uppercut animáció, amikor elkezdünk esni, vagy földet érünk
         if (_uppercutStatus.Status != EActionStatus.PERFORMING
-            && ((rb.linearVelocityY < uppercutVelocityThreshold) || touchesGround))
+            && ((rb.linearVelocityY < uppercutVelocityThreshold) || TouchesGround))
         {
             RefreshUppercut();
         }
@@ -286,7 +313,7 @@ public class PlayerMover : MonoBehaviour
 
         // ha nincs aktív dash, és vízszintes input sincs, és földön vagyunk, megállítjuk a játékost
         // ez akadályozza meg hogy túl "csúszós" legyen a control ~Tamás
-        if (!hasHorizontalInput && touchesGround && !_dashStatus.IsPerforming())
+        if (!hasHorizontalInput && TouchesGround && !_dashStatus.IsPerforming())
         {
             rb.linearVelocityX = 0;
         }
@@ -300,7 +327,7 @@ public class PlayerMover : MonoBehaviour
         ProcessVerticalInput();
         ProcessHorizontalInput();
 
-        if (touchesGround)
+        if (TouchesGround)
         {
             RefreshMovementAbilities();
         }
@@ -358,6 +385,8 @@ public class PlayerMover : MonoBehaviour
     /// Megállapítja, hogy otherObject lehet-e platform. Mivel a punchboxok ugyanabban a gameobjecten belül
     /// vannak, és nincsen felettük rigidbody, ezért összevonódnak; ekkor minden megütött objektum a 3-as (Hitbox)
     /// layeren belül lesz. Ezeket ki kell zárni:(
+    /// 
+    /// Update: már nem biztos hogy vannak layer problémák, külön hitbox trigger van
     /// </summary>
     /// <param name="otherObject">A collision-on belüli másik gameobject.</param>
     /// <returns></returns>
@@ -366,28 +395,28 @@ public class PlayerMover : MonoBehaviour
         return otherObject != gameObject && otherObject.layer == gameObject.layer && otherObject.tag != "enemy";
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // A GroundCheckHitbox CustomTrigger-éhez kapcsolódik. Lásd: Start()
+    private void OnGroundEnter(Collider2D collision)
     {
-        if (IsGameObjectGround(collision.gameObject))
-        {
-            //Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}");
-            //GetComponent<Animator>().SetBool("groundTouch", true); //will be important if we have jump animation.
-            touchesGround = true;
-            col.sharedMaterial.friction = groundFriction;
-            ground = collision.gameObject;
-            col.enabled = true;
-        }
+        if (!IsGameObjectGround(collision.gameObject))
+            return;
+
+        // Debug.Log($"Touched ground at {collision.gameObject.name}, {collision.gameObject.layer}")
+
+        GroundCollidersTouched += 1;
+        col.sharedMaterial.friction = groundFriction;
+        ground = collision.gameObject;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    // A GroundCheckHitbox CustomTrigger-éhez kapcsolódik. Lásd: Start()
+    private void OnGroundExit(Collider2D collision)
     {
-        if (IsGameObjectGround(collision.gameObject))
-        {
-            //Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}");
+        if (!IsGameObjectGround(collision.gameObject))
+            return;
 
-            touchesGround = false;
-            //GetComponent<Animator>().SetBool("groundTouch", false); //will be important if we have jump animation.
-            col.sharedMaterial.friction = airFriction;
-        }
+        // Debug.Log($"Left ground at {collision.gameObject.name}, {collision.gameObject.layer}")
+
+        GroundCollidersTouched -= 1;
+        col.sharedMaterial.friction = airFriction;
     }
 }
