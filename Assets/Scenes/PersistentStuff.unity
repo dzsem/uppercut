@@ -335,7 +335,7 @@ MonoBehaviour:
   - {fileID: 823094085419498111, guid: 63943efb129fafc5b89c0dbeb6468073, type: 3}
   - {fileID: 7895448860608664506, guid: 7ee462d0c9ff9cee1b2591b5f7408b69, type: 3}
   startScenePrefab: {fileID: 3281012050441658256, guid: 83a06be0df151ac4697cae765b52e17b, type: 3}
-  endScenePrefab: {fileID: 7895448860608664506, guid: 7ee462d0c9ff9cee1b2591b5f7408b69, type: 3}
+  endScenePrefab: {fileID: 3718597270480271907, guid: 1269caedbad109b47b07286a64bf62d8, type: 3}
   mapPartCount: 10
   prefabWidth: 30
   checkInterval: 1
