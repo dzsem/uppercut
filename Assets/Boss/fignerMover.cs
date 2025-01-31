@@ -14,6 +14,7 @@ public class fignerMover : MonoBehaviour
     public float backOffset = 1;
     public RaycastHit2D firstHit;
     public int hp = 10;
+    public LayerMask ignoreRaycast;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +27,7 @@ public class fignerMover : MonoBehaviour
     {
         if (hp > 0)
         {
-            firstHit = Physics2D.Raycast((body.transform.position + elevationOffset), Vector2.down);
+            firstHit = Physics2D.Raycast((body.transform.position + elevationOffset), Vector2.down, ignoreRaycast);
 
             if (Mathf.Sign(body.GetComponent<Rigidbody2D>().linearVelocityX) >= 0)
             {
@@ -52,7 +53,7 @@ public class fignerMover : MonoBehaviour
             else
             {
                 RaycastHit2D hit;
-                hit = Physics2D.Raycast(transform.position, Vector2.down);
+                hit = Physics2D.Raycast(transform.position, Vector2.down, ignoreRaycast);
 
 
                 if (hit.distance > 0.1)
@@ -70,6 +71,7 @@ public class fignerMover : MonoBehaviour
         {
             transform.parent = body.transform;
             transform.localPosition = new Vector3(-4.4f, 0.11f, 0);
+         
         }
     }
     public void DecreaseHp()

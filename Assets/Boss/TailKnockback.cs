@@ -18,7 +18,7 @@ public class TailKnockback : MonoBehaviour
     {
         if (collision.gameObject == player)
         {
-            player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 2000);
+            player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 1000);
         }
     }
 }
