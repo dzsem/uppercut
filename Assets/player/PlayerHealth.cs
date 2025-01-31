@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -69,6 +72,9 @@ public class PlayerHealth : MonoBehaviour
     private float _powerStep;
     private int _vignetteIntensity = Shader.PropertyToID("_vignetteIntensity");
     private int _vignettePower = Shader.PropertyToID("_vignettePower");
+    
+    [Header("Death screen cuccok")]
+    public SceneAsset deathScene;
 
     public void Start() {
         // _intensityStep = vignetteIntensityMax / (maxHealth);
@@ -180,6 +186,7 @@ public class PlayerHealth : MonoBehaviour
     public void OnDeathCallback()
     {
         playerMover.disableInput = true;
+        SceneManager.LoadScene(deathScene.name);
     }
 
     public void OnDamageCallback(int hp)
