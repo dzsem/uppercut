@@ -61,13 +61,21 @@ public class EnemyMovements : MonoBehaviour
         //}
         transform.rotation = Quaternion.identity;
 
-        CostumVirtualMovementUpdate();
+        if (!playerInRange)
+        {
+
+
+            CostumVirtualMovementUpdate();
+        }
+        else
+        {
+            CostumeVirtualChasingMovementUpdate();
+        }
     }
 
     protected virtual void CostumVirtualMovementUpdate()
     {
-        if (!playerInRange)
-        {
+
             // Convert transform.position to Vector2 for MoveTowards
             Vector2 currentPosition = transform.position;
             Vector2 targetPosition = direction;
@@ -78,7 +86,13 @@ public class EnemyMovements : MonoBehaviour
             // Convert back to Vector3 and update transform.position
             transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
 
-        }
+
+    }
+
+    protected virtual void CostumeVirtualChasingMovementUpdate()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        rb.AddForce(new Vector2(player.transform.position.x - transform.position.x,0)*movementSpeed);
     }
 
     protected virtual void SetDirection() { return;}
@@ -111,5 +125,17 @@ public class EnemyMovements : MonoBehaviour
         Gizmos.DrawWireSphere(pointEnding.transform.position, endCollider.radius);
         Gizmos.DrawWireSphere(pointStarting.transform.position, startCollider.radius);
         Gizmos.DrawLine(pointEnding.transform.position, pointStarting.transform.position);
+    }
+
+    public void ChangePlayerInRange()
+    {
+        Debug.Log("In view area");
+        playerInRange = true;
+    }
+
+    public void ChangePlayerOutOfRange()
+    {
+        Debug.Log("out view area");
+        playerInRange = false;
     }
 }

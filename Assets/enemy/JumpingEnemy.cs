@@ -9,7 +9,7 @@ public class JumpingEnemy : EnemyMovements
     private bool isJumping = false;
     private bool isSetDirection = false;
     private CostumeTrigger jumpFromTrigger;
-
+    private float jumpHeight;
     public event Action jumpOnEntry;
     private float xVelocity;
 
@@ -24,9 +24,8 @@ public class JumpingEnemy : EnemyMovements
     }
     protected override void CostumVirtualMovementUpdate()
     {
+            jumpHeight=jumpPoint.GetJumpHeight();
 
-        if (!playerInRange)
-        {
             if (!isJumping)
             {
                 if (Mathf.Abs( rb.linearVelocity.x) < Mathf.Abs( xVelocity*movementSpeed))
@@ -45,8 +44,11 @@ public class JumpingEnemy : EnemyMovements
                     isSetDirection = true;
                 }
 
-        }else{}
+
+
     }
+
+
 
     Vector2 GetXDirection(Vector2 pointA, Vector2 pointB)
     {
@@ -58,13 +60,11 @@ public class JumpingEnemy : EnemyMovements
 
     public void jump()
     {
-
         float gravity = Mathf.Abs(Physics2D.gravity.y);
-        float initialJumpVelocity = Mathf.Sqrt(2*gravity*jumpPoint.GetJumpHeight()*this.gameObject.GetComponent<Rigidbody2D>().mass);
+        float initialJumpVelocity = Mathf.Sqrt(2*gravity*jumpHeight*this.gameObject.GetComponent<Rigidbody2D>().mass);
         rb.linearVelocity=new Vector2(xVelocity*1.2f,initialJumpVelocity*1.1f);
         isJumping = true;
         Debug.Log(rb.linearVelocity);
-        Debug.Log(jumpPoint.GetJumpHeight());
     }
 
     void onJumpPointEnter(Collider2D collider)
@@ -72,7 +72,10 @@ public class JumpingEnemy : EnemyMovements
 
         if (collider.gameObject.Equals(hitboxTrigger.gameObject))
         {
-            jumpOnEntry?.Invoke();
+            if (!playerInRange)
+            {
+                jumpOnEntry?.Invoke();
+            }
         }
     }
 
