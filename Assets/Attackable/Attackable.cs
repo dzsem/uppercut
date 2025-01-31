@@ -1,8 +1,5 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Video;
 
 public class Attackable : MonoBehaviour
 {
@@ -25,8 +22,10 @@ public class Attackable : MonoBehaviour
 
     void Awake()
     {
-        attackableRangetrigger.EnterTrigger += OnAttackableRangeTriggerEntered;
-        attackableRangetrigger.ExitTrigger += OnAttackableRangeTriggerExited;
+        if (attackableRangetrigger) {
+            attackableRangetrigger.EnterTrigger += OnAttackableRangeTriggerEntered;
+            attackableRangetrigger.ExitTrigger += OnAttackableRangeTriggerExited;
+        }
     }
 
     private bool IsGameObjectHarmful(GameObject otherGameObject)

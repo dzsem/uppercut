@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class PlayerMover : MonoBehaviour
     public BoxCollider2D dashPunchBox;
     public BoxCollider2D uppercutPunchBox;
     public CostumeTrigger groundTouchTrigger;
+
+    [Header("Events")]
+    public UnityEvent onDash;
+    public UnityEvent onUppercut;
+    public UnityEvent onGroundTouch;
+    public UnityEvent onPunchdown;
 
     [Header("Misc beállítások")]
     public bool disableInput = false;
@@ -32,6 +39,11 @@ public class PlayerMover : MonoBehaviour
             {
                 _touchesGround = newTouchesGround;
                 GetComponent<Animator>().SetBool("groundTouch", TouchesGround);
+
+                if (TouchesGround)
+                {
+                    onGroundTouch?.Invoke();
+                }
             }
 
             _groundCollidersTouched = value;
@@ -269,6 +281,7 @@ public class PlayerMover : MonoBehaviour
                 rb.linearVelocityY = 0.0f;
                 rb.AddForce(Vector2.down * punchdownForce);
 
+                onPunchdown?.Invoke();
                 _punchdownStatus.Status = EActionStatus.PERFORMING;
             }
         }
@@ -281,6 +294,7 @@ public class PlayerMover : MonoBehaviour
             rb.linearVelocityY = 0f;
             rb.AddForce(Vector2.up * jumpForce);
 
+            onUppercut?.Invoke();
             StartCoroutine(DoUppercut());
         }
 
@@ -299,7 +313,7 @@ public class PlayerMover : MonoBehaviour
         // Horizontal movement + dash //
         if (hasHorizontalInput)
         {
-            rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal"));
+            rb.AddForce(Vector2.right * walksSpeed * Input.GetAxis("Horizontal") * Time.deltaTime);
 
             // 0 kizárása
             _facingDirection = Math.Sign(rb.linearVelocityX) == (-1) ? (-1) : 1;
@@ -307,7 +321,11 @@ public class PlayerMover : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X) && CanDash())
         {
-            rb.AddForce(Vector2.right * dashForce * _facingDirection);
+            float inputtedDirection = Input.GetAxis("Horizontal");
+            int dashDirection = hasHorizontalInput ? Math.Sign(inputtedDirection) : _facingDirection;
+
+            rb.AddForce(Vector2.right * dashForce * dashDirection);
+            onDash?.Invoke();
             StartCoroutine(DoDash());
         }
 
