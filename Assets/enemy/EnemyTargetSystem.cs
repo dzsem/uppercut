@@ -13,6 +13,9 @@ public class EnemyTargetSystem : MonoBehaviour
     {
         viewArea.EnterTrigger += OnPlayerInViewArea;
         viewArea.ExitTrigger += OnPlayerOutOfViewArea;
+
+        playerInRange+=gameObject.GetComponent<EnemyMovements>().ChangePlayerInRange;
+        playerOutOfRange+=gameObject.GetComponent<EnemyMovements>().ChangePlayerOutOfRange;
     }
 
     void OnPlayerInViewArea(Collider2D collider)
