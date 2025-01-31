@@ -1,7 +1,13 @@
 using System;
 using System.Collections;
+using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -53,6 +59,35 @@ public class PlayerHealth : MonoBehaviour
     [Header("Belső state")]
     [SerializeField] private bool _isInvulnerableByDmg = false;
     [SerializeField] private int _invulnerabilityCountByDmg = 0;
+
+    [Header("HP Vignette shader cuccok")]
+    public ScriptableRendererFeature shader;
+    public Material shaderMaterial;
+    public const float vignetteIntensityMax = 1.4f;
+    public const float vignetteIntensityStart = 0.4f;
+    public const float vignettePowerStart = 5.3f;
+    public const float vignettePowerMin = 0.3f;
+    public const float vignetteSmoothing = 0.5f;
+    private int _vignetteIntensity = Shader.PropertyToID("_vignetteIntensity");
+    private int _vignettePower = Shader.PropertyToID("_vignettePower");
+    
+    [Header("Death screen cuccok")]
+    public SceneAsset deathScene;
+
+    public void Start() {
+        // _intensityStep = vignetteIntensityMax / (maxHealth);
+        // _powerStep = vignettePowerMax / (maxHealth * 3f);
+        // _intensityStep = 0.3f;
+        // _powerStep = 1f;
+        // Debug.Log("intensity step: " + _intensityStep);
+        // Debug.Log("power step: " + _powerStep);
+
+        shaderMaterial.SetFloat(_vignetteIntensity, vignetteIntensityStart);
+        shaderMaterial.SetFloat(_vignettePower, vignettePowerStart);
+        shader.SetActive(true);
+        onDeath.AddListener(OnDeathCallback);
+        onDamage.AddListener(OnDamageCallback);
+    }
 
     /// <summary>
     /// Megadja, hogy akármilyen okból sebezhetetlen-e a player.
@@ -149,39 +184,43 @@ public class PlayerHealth : MonoBehaviour
     public void OnDeathCallback()
     {
         playerMover.disableInput = true;
+        SceneManager.LoadScene(deathScene.name);
     }
 
     public void OnDamageCallback(int hp)
     {
         Debug.Log("OnDamageCallback called");
-        // StartCoroutine(UpdateVignetteEffect());
-        FindFirstObjectByType<MainCamera>().ShakeCamera(0.8f, 1f);
+        StartCoroutine(UpdateVignetteEffect(hp));
+        FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
     }
 
-    // private IEnumerator UpdateVignetteEffect() {
-    //     float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
-    //     float power = shaderMaterial.GetFloat(_vignettePower);
+    private IEnumerator UpdateVignetteEffect(int hp) {
+        float intensity = shaderMaterial.GetFloat(_vignetteIntensity);
+        float power = shaderMaterial.GetFloat(_vignettePower);
+        
+        float _powerStep = (float) Math.Sqrt(hp);
+        float _intensityStep = _powerStep * 0.75f;
 
-    //     float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
-    //     float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
+        float targetIntensity = Mathf.Clamp(intensity + _intensityStep, 0f, vignetteIntensityMax);
+        float targetPower = Mathf.Clamp(power - _powerStep, vignettePowerMin, vignettePowerStart);
+        
+        float elapsed = 0f;
 
-    //     float elapsed = 0f;
+        while (elapsed < vignetteSmoothing) {
+            elapsed += Time.deltaTime;
+            float t = elapsed / vignetteSmoothing;
 
-    //     while (elapsed < vignetteSmoothing) {
-    //         elapsed += Time.deltaTime;
-    //         float t = elapsed / vignetteSmoothing;
+            intensity = Mathf.Lerp(intensity, targetIntensity, t);
+            power = Mathf.Lerp(power, targetPower, t);
 
-    //         intensity = Mathf.Lerp(intensity, targetIntensity, t);
-    //         power = Mathf.Lerp(power, targetPower, t);
+            shaderMaterial.SetFloat(_vignetteIntensity, intensity);
+            shaderMaterial.SetFloat(_vignettePower, power);
 
-    //         shaderMaterial.SetFloat(_vignetteIntensity, intensity);
-    //         shaderMaterial.SetFloat(_vignettePower, power);
+            Debug.Log("Lerping: Intensity=" + intensity + " Power=" + power);
+            yield return null;
+        }
 
-    //         Debug.Log("Lerping: Intensity=" + intensity + " Power=" + power);
-    //         yield return null;
-    //     }
-
-    //     shaderMaterial.SetFloat(_vignetteIntensity, targetIntensity);
-    //     shaderMaterial.SetFloat(_vignettePower, targetPower);
-    // }
+        shaderMaterial.SetFloat(_vignetteIntensity, targetIntensity);
+        shaderMaterial.SetFloat(_vignettePower, targetPower);
+    }
 }
