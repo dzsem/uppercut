@@ -92,7 +92,7 @@ public class EnemyMovements : MonoBehaviour
     protected virtual void CostumeVirtualChasingMovementUpdate()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        rb.AddForce(new Vector2(player.transform.position.x - transform.position.x,0)*movementSpeed);
+        rb.linearVelocity= new Vector2(player.transform.position.x - transform.position.x,0)*(movementSpeed*2);
     }
 
     protected virtual void SetDirection() { return;}
@@ -133,7 +133,7 @@ public class EnemyMovements : MonoBehaviour
         playerInRange = true;
     }
 
-    public void ChangePlayerOutOfRange()
+    public virtual void ChangePlayerOutOfRange()
     {
         Debug.Log("out view area");
         playerInRange = false;

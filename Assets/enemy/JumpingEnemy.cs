@@ -21,6 +21,8 @@ public class JumpingEnemy : EnemyMovements
         jumpFromTrigger.EnterTrigger += onJumpPointEnter;
         jumpOnEntry += jump;
         xVelocity = GetXDirection(this.gameObject.transform.position, direction).x;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerMover>().onUppercut.AddListener(JumpOnPlayerJump);
     }
     protected override void CostumVirtualMovementUpdate()
     {
@@ -88,6 +90,29 @@ public class JumpingEnemy : EnemyMovements
         }
     }
 
+    public void JumpOnPlayerJump()
+    {
+        if (playerInRange)
+        {
+            jump();
+        }
+    }
+
+    public override void ChangePlayerOutOfRange()
+    {
+        playerInRange = false;
+        isSetDirection = false;
+    }
+
+    protected override void CostumeVirtualChasingMovementUpdate()
+    {
+        if (!isJumping)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            rb.linearVelocity =
+                new Vector2(player.transform.position.x - transform.position.x, 0) * (movementSpeed * 2);
+        }
+    }
 
     protected override void SetDirection() => isSetDirection = false;
 }
