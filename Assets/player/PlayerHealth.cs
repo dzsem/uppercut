@@ -177,11 +177,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnDeathCallback() {
+    public void OnDeathCallback()
+    {
         playerMover.disableInput = true;
     }
 
-    private void OnDamageCallback(int hp) {
+    public void OnDamageCallback(int hp)
+    {
         Debug.Log("OnDamageCallback called");
         StartCoroutine(UpdateVignetteEffect());
         FindFirstObjectByType<MainCamera>().ShakeCamera(0.1f, 1f);
